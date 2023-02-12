@@ -25,6 +25,11 @@ function CourseList(): JSX.Element {
           />
 
           <Course
+            name="TypeScript"
+            image="https://static.platzi.com/media/achievements/piezas-fundamentos-typescript_badge-8a928c5a-0526-4a04-8e4b-1779384d1308.png"
+          />
+
+          <Course
             name="NEXT.js"
             image="https://static.platzi.com/media/achievements/piezas-profesional-nextjs_badge-c9a806c6-e240-45da-81da-c206b0611e84.png"
           />

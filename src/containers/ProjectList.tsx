@@ -20,7 +20,7 @@ function ProjectList(): JSX.Element {
         <Project
           p_name="Ecommerce API Docs"
           description="The first step to owning a good ecommerce"
-          langs={["NEXT.js", "CSS", "Tailwind CSS"]}
+          langs={["TypeScript", "NEXT.js", "Tailwind CSS"]}
           page="https://ecommerce-api-docs-geras4323.vercel.app/"
           repo="https://github.com/Geras4323/ecommerce-api-docs"
           backgr="bg-apidocs"
