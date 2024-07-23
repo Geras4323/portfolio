@@ -25,6 +25,7 @@ const config: Config = {
         144: "36rem",
         152: "38rem",
         160: "40rem",
+        256: "64rem",
       },
       width: {
         104: "26rem",
@@ -67,6 +68,23 @@ const config: Config = {
       borderRadius: {
         "4xl": "2rem",
         "5xl": "3rem",
+      },
+      transitionDelay: {
+        450: "450ms",
+      },
+      animation: {
+        sideways: "sideways 2s ease-in-out infinite",
+        upways: "upways 2s ease-in-out infinite",
+      },
+      keyframes: {
+        sideways: {
+          "0%, 100%": { left: "0" },
+          "50%": { left: "30px" },
+        },
+        upways: {
+          "0%, 100%": { top: "0" },
+          "50%": { top: "30px" },
+        },
       },
     },
   },
