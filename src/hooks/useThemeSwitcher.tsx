@@ -8,6 +8,7 @@ export const useThemeSwitcher = () => {
 
   useEffect(() => {
     setRealTheme(theme);
+    document.documentElement.setAttribute("data-theme", theme ?? "dark");
   }, [theme]);
 
   function switchTheme() {

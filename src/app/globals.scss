@@ -2,6 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --glitch-color: black;
+}
+
+[data-theme='dark'] {
+  --glitch-color: white;
+}
+
 .glitch {
   position: relative;
 }
@@ -22,27 +30,29 @@
       @keyframes glitch#{$i} {
         0% {
           transform: translateX(0);
+          color: var(--glitch-color);
         }
         80% {
           transform: translateX(0);
-          color: #fff;
+          color: var(--glitch-color);
         }
         85% {
           transform: translateX(random(10) - 5px);
           // color: #4E9A26;
-          color: #fff;
+          color: var(--glitch-color);
         }
         90% {
           transform: translateX(random(10) - 5px);
           // color: #AC1212;
-          color: #fff;
+          color: var(--glitch-color);
         }
         95% {
           transform: translateX(random(10) - 5px);
-          color: #fff;
+          color: var(--glitch-color);
         }
         100% {
           transform: translateX(0);
+          color: var(--glitch-color);
         }
       }
     }
@@ -67,4 +77,26 @@
       0 0
     );
   }
+}
+
+.radius {
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.gradient-border-bg {
+  border: 4px solid;
+  padding: 1rem;
+}
+
+.gradient-border-bg.border-dps {
+  border-image: linear-gradient(90deg, #39f2ae, #2D5FFF) 1;
+}
+
+.gradient-border-bg.border-freelance {
+  border-image: linear-gradient(90deg, #afa48d, #d7cdb8) 1;
+}
+
+.grad1 {
+  mask-image: linear-gradient(to left, black, transparent);
 }

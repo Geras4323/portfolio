@@ -34,6 +34,7 @@ const config: Config = {
         144: "36rem",
         152: "38rem",
         160: "40rem",
+        240: "60rem",
       },
       minWidth: {
         "screen-xxs": "480px",
@@ -50,6 +51,7 @@ const config: Config = {
         144: "36rem",
         152: "38rem",
         160: "40rem",
+        240: "60rem",
       },
       maxHeight: {
         104: "26rem",
@@ -59,6 +61,10 @@ const config: Config = {
         144: "36rem",
         152: "38rem",
         160: "40rem",
+        240: "60rem",
+      },
+      backdropBlur: {
+        xs: "2px",
       },
       boxShadow: {
         "inner-sm": "inset 0 2px 4px 0 rgb(0 0 0 / 0.10)",
@@ -71,6 +77,10 @@ const config: Config = {
       },
       transitionDelay: {
         450: "450ms",
+        600: "600ms",
+        750: "750ms",
+        900: "900ms",
+        1050: "1050ms",
       },
       animation: {
         sideways: "sideways 2s ease-in-out infinite",
