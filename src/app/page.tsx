@@ -1,31 +1,73 @@
 "use client";
 import { cn } from "@/utils/lib";
-import { Moon, Sun, UserRound } from "lucide-react";
+import {
+  ArrowDown,
+  Moon,
+  SquareArrowOutUpRight,
+  Sun,
+  UserRound,
+} from "lucide-react";
 import { Remarked } from "@/components/remarkedBlock";
 import { GitHubSVG } from "../../public/github/logo";
 import { useThemeSwitcher } from "@/hooks/useThemeSwitcher";
 import { useEffect, useState } from "react";
-import LushForest from "../../public/lush-forest.jpg";
-import Image, { StaticImageData } from "next/image";
-import { SpinningCircle } from "@/components/spinningCircle";
-import SiggaGradient from "../../public/sigga/Gradient.png";
+import Image, { type StaticImageData } from "next/image";
 import { PlatziLogo } from "public/platzi/logo";
 import { LinkedinLogo } from "public/linkedin/logo";
-import SCTrackng from "../../public/seatcontrol/tracking.gif";
-import { DPSLogo } from "public/dps/logo";
+import { DPSColorLogo } from "public/dps/color_logo";
 import { TypeAnimation } from "react-type-animation";
 import { CareerDiagram } from "@/components/diagram/carreerDiagram";
+//
+import ShowroomDark from "../../public/misideaspintadas/showroomDark.png";
+import ShowroomLight from "../../public/misideaspintadas/showroomLight.png";
+import OrdersDark from "../../public/misideaspintadas/ordersDark.png";
+import OrdersLight from "../../public/misideaspintadas/ordersLight.png";
+//
+import SCTrackng from "../../public/seatcontrol/tracking.gif";
 import SCTrackingDark from "../../public/seatcontrol/trackingDark.png";
 import SCTrackingLight from "../../public/seatcontrol/trackingLight.png";
-import SCSupport from "../../public/seatcontrol/support.png";
+import SCSupportDark from "../../public/seatcontrol/supportDark.png";
+import SCSupportLight from "../../public/seatcontrol/supportLight.png";
 import SCAuditDark from "../../public/seatcontrol/auditDark.png";
 import SCAuditLight from "../../public/seatcontrol/auditLight.png";
+//
+import SiggaTop from "../../public/sigga/top.png";
+import SiggaFooter from "../../public/sigga/footer.png";
+//
+import DPSBrands from "../../public/dps/brands.png";
+import DPSProducts from "../../public/dps/products.png";
+import { CV } from "public/special/cv";
+import { React } from "public/techs/react";
+import { Typescript } from "public/techs/typescript";
+import { NextJS } from "public/techs/nextjs";
+import { TailwindCSS } from "public/techs/tailwind";
+import { Go } from "public/techs/go";
+import { MySQL } from "public/techs/mysql";
+import { Maps } from "public/techs/maps";
+import { Websocket } from "public/techs/websocket";
+import { Chart } from "public/techs/chart";
+import { Diagram } from "public/techs/diagram";
+import { AWSEC2 } from "public/techs/awsec2";
+import { Docker } from "public/techs/docker";
+import { NodeJS } from "public/techs/nodejs";
+import { TechItem } from "@/components/techItem";
+
+const misideaspintadasImages: {
+  dark: StaticImageData[];
+  light: StaticImageData[];
+} = {
+  dark: [ShowroomDark, OrdersDark],
+  light: [ShowroomLight, OrdersLight],
+};
 
 const seatcontrolImages: { dark: StaticImageData[]; light: StaticImageData[] } =
   {
-    dark: [SCTrackingDark, SCSupport, SCAuditDark],
-    light: [SCTrackingLight, SCSupport, SCAuditLight],
+    dark: [SCTrackingDark, SCSupportDark, SCAuditDark],
+    light: [SCTrackingLight, SCSupportLight, SCAuditLight],
   };
+
+const siggaImages: StaticImageData[] = [SiggaTop, SiggaFooter];
+const dpsImages: StaticImageData[] = [DPSBrands, DPSProducts];
 
 export default function Home() {
   const { theme, switchTheme } = useThemeSwitcher();
@@ -37,16 +79,23 @@ export default function Home() {
     setLoaded(true);
   }, []);
 
+  const mip =
+    theme === "dark"
+      ? misideaspintadasImages.dark
+      : misideaspintadasImages.light;
+
   const sc =
     theme === "dark" ? seatcontrolImages.dark : seatcontrolImages.light;
 
   return (
     <div
-      // className={cn(
-      //   theme === "dark" ? "via-black" : "via-white",
-      //   "flex h-fit min-h-screen w-full gap-8 overflow-clip bg-gradient-to-br from-[#9619c840] to-[#033bc840] bg-fixed p-16 backdrop-blur-sm",
-      // )}
-      className="flex h-fit min-h-screen w-full gap-8 overflow-clip p-16"
+      className={cn(
+        theme === "dark"
+          ? "bg-gradient-to-br from-[#9619c840] via-black to-[#033bc840]"
+          : "bg-gradient-to-bl from-[#e2dccfdd] via-white to-white",
+        "flex h-fit min-h-screen w-full gap-8 overflow-clip bg-fixed p-16 backdrop-blur-sm",
+      )}
+      // className="flex h-fit min-h-screen w-full gap-8 overflow-clip p-16"
     >
       <button
         onClick={() => setAnimations((prev) => !prev)}
@@ -59,7 +108,7 @@ export default function Home() {
           <section className="flex w-1/2 flex-col justify-between gap-8">
             <Remarked className="h-80 min-h-80 w-full">
               <div className="flex h-full w-full flex-col justify-between gap-4 rounded-2xl bg-secondary/10 p-8 shadow-inner-lg">
-                <div className="flex flex-col gap-4">
+                <div className="flex flex-col gap-4 text-primary/70">
                   <p className="text-5xl font-semibold uppercase tracking-wide">
                     Germán Göhringer
                   </p>
@@ -96,7 +145,62 @@ export default function Home() {
 
             <Remarked className="h-80 min-h-80 w-full">
               <div className="h-full w-full rounded-2xl bg-secondary/10 p-4 shadow-inner-lg">
-                <div className="text-3xl uppercase tracking-wide text-primary" />
+                <div className="flex size-full gap-6 rounded-xl border border-secondary/20 p-4">
+                  <a
+                    href="./CV - GERMAN GOHRINGER - FRONTEND DEVELOPER.pdf"
+                    download
+                    className="relative flex h-full w-48 min-w-48 cursor-pointer items-center justify-center rounded-lg bg-secondary/10 shadow-md transition-all duration-300 hover:bg-secondary/15"
+                  >
+                    <CV className="size-20 min-w-20 fill-primary/70" />
+                    <ArrowDown className="absolute bottom-20 right-14 size-6 min-w-6 -translate-x-1 -translate-y-1 animate-bounce" />
+                  </a>
+
+                  <div className="flex size-full flex-col justify-around">
+                    <div className="flex items-center justify-center gap-8 [&>*]:size-12">
+                      <TechItem Svg={React} content="ReactJS" />
+                      <TechItem
+                        Svg={NextJS}
+                        content="NEXT.js"
+                        className="fill-primary"
+                      />
+                      <TechItem Svg={Typescript} content="TypeScript" />
+                      <TechItem Svg={TailwindCSS} content="Tailwind CSS" />
+                    </div>
+                    <div className="flex items-center justify-center gap-8 [&>*]:size-12">
+                      <TechItem Svg={Go} content="Golang" />
+                      <TechItem Svg={Docker} content="Docker" />
+                      <TechItem Svg={MySQL} content="MySQL" />
+                      <TechItem
+                        Svg={AWSEC2}
+                        content="AWS EC2"
+                        className="fill-primary/60"
+                      />
+                      <TechItem Svg={NodeJS} content="NodeJS" />
+                    </div>
+                    <div className="flex items-center justify-center gap-8 [&>*]:size-12">
+                      <TechItem
+                        Svg={Websocket}
+                        content="Websockets"
+                        className="fill-primary/60"
+                      />
+                      <TechItem
+                        Svg={Chart}
+                        content="Charts"
+                        className="fill-primary/60"
+                      />
+                      <TechItem
+                        Svg={Maps}
+                        content="Maps"
+                        className="stroke-primary/60"
+                      />
+                      <TechItem
+                        Svg={Diagram}
+                        content="Diagrams"
+                        className="stroke-primary/60"
+                      />
+                    </div>
+                  </div>
+                </div>
               </div>
             </Remarked>
           </section>
@@ -114,41 +218,46 @@ export default function Home() {
           <Remarked className="h-full w-full">
             <div className="relative flex h-full w-full gap-8 overflow-hidden rounded-2xl bg-secondary/10 p-4 shadow-inner-lg">
               <div className="group z-10 flex h-full w-3/5 gap-1.5">
-                {Array.from({ length: 1 }).map((_, i) => (
+                {mip.map((image, i) => (
                   <div
                     key={i}
-                    className="relative h-full flex-[1] overflow-hidden rounded-xl transition-all duration-500 hover:flex-[1.5]"
+                    className="relative h-full flex-[1] overflow-hidden rounded-xl shadow-lg transition-all duration-500 hover:flex-[1.5]"
                   >
-                    <div className="absolute left-0 top-0 size-full bg-black/50 opacity-0 transition-all duration-500 hover:!opacity-0 group-hover:opacity-100 group-hover:backdrop-blur-[1px]" />
+                    <div className="absolute left-0 top-0 size-full rounded-xl bg-black/50 opacity-0 transition-all duration-500 hover:!opacity-0 group-hover:opacity-100 group-hover:backdrop-blur-[1px]" />
                     <Image
                       alt="LushForest"
-                      src={LushForest}
-                      className="h-full w-full object-cover transition-all"
+                      src={image}
+                      className="h-full w-full object-cover opacity-85 saturate-0 transition-all duration-500 hover:opacity-100 hover:saturate-100"
+                      width={400}
+                      height={300}
                     />
                   </div>
                 ))}
-                <div className="relative h-full flex-[1] overflow-hidden rounded-xl transition-all duration-500 hover:flex-[1.5]">
-                  <div className="absolute left-0 top-0 size-full bg-black/50 opacity-0 transition-all duration-500 hover:!opacity-0 group-hover:opacity-100 group-hover:backdrop-blur-[1px]" />
-                  {/* <Image
-                    alt="SCT"
-                    src={SCTrackng}
-                    className="h-full w-full object-cover transition-all"
-                  /> */}
-                </div>
               </div>
               <div className="z-10 flex h-full w-2/5 flex-col items-end justify-between gap-2">
-                <UserRound className="size-9 text-primary/70" />
+                <div className="flex items-center gap-3">
+                  <a
+                    href="https://misideaspintadas.com.ar/"
+                    className="mr-2 flex items-center gap-5"
+                  >
+                    <SquareArrowOutUpRight className="size-6 min-w-6" />
+                  </a>
+                  <UserRound className="size-9 text-primary/70" />
+                </div>
                 <div className="flex flex-col justify-end gap-2 p-4 text-end">
                   <p className="text-nowrap text-2xl italic text-primary/70">
-                    Full App Development
+                    Ecommerce - Full App Development
                   </p>
-                  <div className="glitch text-nowrap text-6xl font-semibold text-primary">
+                  <div className="text-nowrap text-5xl font-semibold text-primary">
+                    Mis Ideas Pintadas
+                  </div>
+                  {/* <div className="glitch text-nowrap text-6xl font-semibold text-primary">
                     {Array.from({ length: 11 }).map((_, i) => (
                       <span key={i} className="line">
-                        Ecommerce
+                        Mis Ideas Pintadas
                       </span>
                     ))}
-                  </div>
+                  </div> */}
                 </div>
               </div>
 
@@ -163,7 +272,7 @@ export default function Home() {
                     loop
                     className={cn(
                       theme === "dark" ? "opacity-0" : "opacity-30",
-                      "grad1 absolute right-0 top-0 z-0 h-full w-144 object-cover",
+                      "grad1 absolute right-0 top-0 z-0 h-full w-96 object-cover",
                     )}
                   />
                   <video
@@ -175,13 +284,11 @@ export default function Home() {
                     loop
                     className={cn(
                       theme === "dark" ? "opacity-20" : "opacity-0",
-                      "grad1 absolute right-0 top-0 z-0 h-full w-144 object-cover",
+                      "grad1 absolute right-0 top-0 z-0 h-full w-96 object-cover",
                     )}
                   />
                 </>
               )}
-
-              {/* <SpinningCircle className="right-12 top-1/2 scale-125" /> */}
             </div>
           </Remarked>
         </section>
@@ -193,13 +300,13 @@ export default function Home() {
                 {sc.map((image, i) => (
                   <div
                     key={i}
-                    className="relative h-full flex-[1] overflow-hidden rounded-xl transition-all duration-500 hover:flex-[1.5]"
+                    className="relative h-full flex-[1] overflow-hidden rounded-xl shadow-lg transition-all duration-500 hover:flex-[1.5]"
                   >
-                    <div className="absolute left-0 top-0 size-full bg-black/50 opacity-0 transition-all duration-500 hover:!opacity-0 group-hover:opacity-100 group-hover:backdrop-blur-[1px]" />
+                    <div className="absolute left-0 top-0 size-full rounded-xl bg-black/50 opacity-0 transition-all duration-500 hover:!opacity-0 group-hover:opacity-100 group-hover:backdrop-blur-[1px]" />
                     <Image
-                      alt="LushForest"
+                      alt="SC_Image"
                       src={image}
-                      className="h-full w-full object-cover transition-all"
+                      className="h-full w-full object-cover opacity-85 saturate-0 transition-all duration-500 hover:opacity-100 hover:saturate-100"
                       height={400}
                       width={300}
                     />
@@ -207,18 +314,29 @@ export default function Home() {
                 ))}
               </div>
               <div className="z-10 flex h-full w-2/5 flex-col items-end justify-between gap-2">
-                <DPSLogo className="size-14 fill-primary/70" />
+                <div className="flex items-center gap-3">
+                  <a
+                    href="https://www.stctrl.com.ar/"
+                    className="flex items-center gap-3"
+                  >
+                    <SquareArrowOutUpRight className="size-6 min-w-6" />
+                  </a>
+                  <DPSColorLogo className="size-14 fill-primary/70" />
+                </div>
                 <div className="flex flex-col justify-end gap-2 p-4 text-end">
                   <p className="text-nowrap text-2xl italic text-primary/70">
                     Full Frontend Development
                   </p>
-                  <div className="glitch text-6xl text-primary">
+                  <div className="text-6xl text-primary">
+                    Seat<b>Control</b>
+                  </div>
+                  {/* <div className="glitch text-6xl text-primary/70">
                     {Array.from({ length: 11 }).map((_, i) => (
                       <span key={i} className="line">
                         Seat<b>Control</b>
                       </span>
                     ))}
-                  </div>
+                  </div> */}
                 </div>
               </div>
 
@@ -229,53 +347,55 @@ export default function Home() {
                   className="grad1 absolute right-0 top-0 z-0 h-full object-cover opacity-30"
                 />
               )}
-
-              {/* <SpinningCircle className="right-12 top-1/2 scale-125" /> */}
             </div>
           </Remarked>
         </section>
 
         <section className="flex h-80 gap-8">
           <Remarked className="h-full w-full">
-            <div className="flex h-full w-full gap-8 rounded-2xl bg-secondary/10 p-4 shadow-inner-lg">
+            <div className="relative flex h-full w-full gap-8 overflow-hidden rounded-2xl bg-secondary/10 p-4 shadow-inner-lg">
               <div className="group flex h-full w-3/5 gap-1.5">
-                {Array.from({ length: 2 }).map((_, i) => (
+                {dpsImages.map((image, i) => (
                   <div
                     key={i}
-                    className="relative h-full flex-[1] overflow-hidden rounded-xl transition-all duration-500 hover:flex-[1.5]"
+                    className="relative h-full flex-[1] overflow-hidden rounded-xl shadow-lg transition-all duration-500 hover:flex-[1.5]"
                   >
-                    <div className="absolute left-0 top-0 size-full bg-black/50 opacity-0 transition-all duration-500 hover:!opacity-0 group-hover:opacity-100 group-hover:backdrop-blur-[1px]" />
+                    <div className="absolute left-0 top-0 size-full rounded-xl bg-black/50 opacity-0 transition-all duration-500 hover:!opacity-0 group-hover:opacity-100 group-hover:backdrop-blur-[1px]" />
                     <Image
-                      alt="LushForest"
-                      src={SiggaGradient}
-                      className="h-full w-full object-cover transition-all"
+                      alt="DPS_Image"
+                      src={image}
+                      className="h-full w-full object-cover opacity-85 saturate-0 transition-all duration-500 hover:opacity-100 hover:saturate-100"
+                      width={200}
+                      height={300}
                     />
                   </div>
                 ))}
-                {/* <div className="relative h-full flex-[1] overflow-hidden transition-all duration-500 hover:flex-[1.5]">
-                  <div className="absolute left-0 top-0 size-full bg-black/50 opacity-0 transition-all duration-500 hover:!opacity-0 group-hover:opacity-100 group-hover:backdrop-blur-[1px]" />
-                  <Image
-                    alt="LushForest"
-                    src={SiggaGradient}
-                    className="h-full w-full object-cover transition-all"
-                  />
-                </div> */}
               </div>
               <div className="flex h-full w-2/5 flex-col items-end justify-between gap-2">
-                <DPSLogo className="size-14 fill-primary/70" />
+                <div className="flex items-center gap-3">
+                  <a
+                    href="https://www.dpssoftware.com.ar/"
+                    className="flex items-center gap-3"
+                  >
+                    <SquareArrowOutUpRight className="size-6 min-w-6" />
+                  </a>
+                  <DPSColorLogo className="size-14 fill-primary/70" />
+                </div>
                 <div className="flex flex-col justify-end gap-2 p-4 text-end">
                   <p className="text-nowrap text-2xl italic text-primary/70">
                     Landing Page
                   </p>
                   <div className="glitch self-end text-6xl font-semibold text-primary">
+                    DPS
+                  </div>
+                  {/* <div className="glitch self-end text-6xl font-semibold text-primary">
                     {Array.from({ length: 11 }).map((_, i) => (
                       <span key={i} className="line">
                         DPS
                       </span>
                     ))}
-                  </div>
+                  </div> */}
                 </div>
-                {/* <SiggaLogo className="h-24" /> */}
               </div>
             </div>
           </Remarked>
@@ -283,43 +403,44 @@ export default function Home() {
           <Remarked className="h-full w-full">
             <div className="flex h-full w-full gap-8 rounded-2xl bg-secondary/10 p-4 shadow-inner-lg">
               <div className="group flex h-full w-3/5 gap-1.5">
-                {Array.from({ length: 2 }).map((_, i) => (
+                {siggaImages.map((image, i) => (
                   <div
                     key={i}
-                    className="relative h-full flex-[1] overflow-hidden rounded-xl transition-all duration-500 hover:flex-[1.5]"
+                    className="relative h-full flex-[1] overflow-hidden rounded-xl shadow-lg transition-all duration-500 hover:flex-[1.5]"
                   >
-                    <div className="absolute left-0 top-0 size-full bg-black/50 opacity-0 transition-all duration-500 hover:!opacity-0 group-hover:opacity-100 group-hover:backdrop-blur-[1px]" />
+                    <div className="absolute left-0 top-0 size-full rounded-xl bg-black/50 opacity-0 transition-all duration-500 hover:!opacity-0 group-hover:opacity-100 group-hover:backdrop-blur-[1px]" />
                     <Image
-                      alt="LushForest"
-                      src={SiggaGradient}
-                      className="h-full w-full object-cover transition-all"
+                      alt="Sigga_Image"
+                      src={image}
+                      className="h-full w-full object-cover opacity-85 saturate-0 transition-all duration-500 hover:opacity-100 hover:saturate-100"
+                      width={200}
+                      height={300}
                     />
                   </div>
                 ))}
-                {/* <div className="relative h-full flex-[1] overflow-hidden transition-all duration-500 hover:flex-[1.5]">
-                  <div className="absolute left-0 top-0 size-full bg-black/50 opacity-0 transition-all duration-500 hover:!opacity-0 group-hover:opacity-100 group-hover:backdrop-blur-[1px]" />
-                  <Image
-                    alt="LushForest"
-                    src={SiggaGradient}
-                    className="h-full w-full object-cover transition-all"
-                  />
-                </div> */}
               </div>
               <div className="flex h-full w-2/5 flex-col items-end justify-between gap-2">
-                <DPSLogo className="size-14 fill-primary/70" />
-                <div className="flex flex-col justify-end gap-2 p-4 text-end">
+                <div className="flex items-center gap-3">
+                  <a href="https://www.sigga.com.ar/">
+                    <SquareArrowOutUpRight className="size-6 min-w-6" />
+                  </a>
+                  <DPSColorLogo className="size-14 fill-primary/70" />
+                </div>
+                <div className="flex flex-col items-end justify-end gap-2 p-4 text-end">
                   <p className="text-nowrap text-2xl italic text-primary/70">
                     Landing Page
                   </p>
                   <div className="glitch self-end text-6xl font-semibold text-primary">
+                    SIGGA
+                  </div>
+                  {/* <div className="glitch self-end text-6xl font-semibold text-primary/70">
                     {Array.from({ length: 11 }).map((_, i) => (
                       <span key={i} className="line">
                         SIGGA
                       </span>
                     ))}
-                  </div>
+                  </div> */}
                 </div>
-                {/* <SiggaLogo className="h-24" /> */}
               </div>
             </div>
           </Remarked>

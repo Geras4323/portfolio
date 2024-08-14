@@ -60,7 +60,7 @@ export const CareerDiagram = () => {
         />
 
         <Panel position="top-left">
-          <div className="flex w-fit -translate-x-4 items-center gap-0.5 fill-primary/80 text-primary/80 opacity-0 transition-all delay-300 group-hover:-translate-x-0 group-hover:opacity-100">
+          <div className="flex w-fit -translate-x-4 items-center gap-0.5 rounded-md bg-black/5 fill-primary/80 px-2 py-1 text-primary/80 opacity-0 backdrop-blur-sm transition-all delay-300 group-hover:-translate-x-0 group-hover:opacity-100">
             <Search className="size-6" />
             <Equal className="size-5 stroke-2" />
             <CTRL className="size-8" />

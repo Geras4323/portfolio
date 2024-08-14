@@ -41,7 +41,7 @@ export const DefaultNode = (props: NodeProps<NodeData>) => {
   return (
     <>
       {/* <div className="flex h-full w-full rounded-lg border border-b-2 border-secondary/30 border-b-primary bg-base-100/30 shadow-lg backdrop-blur-xs"> */}
-      <div className="flex h-full w-full rounded-lg border border-b-2 border-secondary/30 border-b-primary bg-base-100/30 shadow-lg backdrop-blur-xs">
+      <div className="flex h-full w-full rounded-lg border border-b-2 border-secondary/60 border-b-primary bg-base-100/30 shadow-lg backdrop-blur-xs">
         <div className="flex w-full items-center justify-center p-2 text-center">
           {props.data.label}
         </div>
@@ -119,7 +119,7 @@ export const JobNode = (props: NodeProps<NodeData>) => {
 export const ParentNode = (props: NodeProps<NodeData>) => {
   return (
     <>
-      <div className="flex h-full w-full rounded-xl border border-secondary/30 bg-base-100/30 shadow-lg backdrop-blur-xs" />
+      <div className="flex h-full w-full rounded-xl border border-secondary/60 bg-base-100/30 shadow-lg backdrop-blur-xs" />
 
       {nodePorts.map(({ position, type, pos }) =>
         props.data.ports.includes(position) ? (

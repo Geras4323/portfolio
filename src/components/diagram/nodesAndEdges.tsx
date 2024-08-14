@@ -294,13 +294,13 @@ export const initialNodes: Node<NodeData>[] = [
       label: "Freelance",
       ports: ["left", "right", "top", "bottom"],
       type: "job",
-      className: "border-freelance",
+      className: "border-freelance border-b-4",
     },
     position: {
       x: 220,
       y: 680,
     },
-    type: "jobNode",
+    type: "defaultNode",
     style: {
       width: 220,
       height: 80,
