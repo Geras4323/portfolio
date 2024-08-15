@@ -2,10 +2,13 @@
 import { cn } from "@/utils/lib";
 import {
   ArrowDown,
+  FolderOpen,
+  Minus,
   Moon,
   SquareArrowOutUpRight,
   Sun,
   UserRound,
+  Wrench,
 } from "lucide-react";
 import { Remarked } from "@/components/remarkedBlock";
 import { GitHubSVG } from "../../public/github/logo";
@@ -92,7 +95,7 @@ export default function Home() {
       className={cn(
         theme === "dark"
           ? "bg-gradient-to-br from-[#9619c840] via-black to-[#033bc840]"
-          : "bg-gradient-to-bl from-[#e2dccfdd] via-white to-white",
+          : "bg-gradient-to-bl from-[#e2dccfff] to-white",
         "flex h-fit min-h-screen w-full gap-8 overflow-clip bg-fixed p-16 backdrop-blur-sm",
       )}
       // className="flex h-fit min-h-screen w-full gap-8 overflow-clip p-16"
@@ -106,6 +109,7 @@ export default function Home() {
       <div className="flex w-full flex-col gap-8">
         <div className="flex w-full gap-8">
           <section className="flex w-1/2 flex-col justify-between gap-8">
+            {/* NAME */}
             <Remarked className="h-80 min-h-80 w-full">
               <div className="flex h-full w-full flex-col justify-between gap-4 rounded-2xl bg-secondary/10 p-8 shadow-inner-lg">
                 <div className="flex flex-col gap-4 text-primary/70">
@@ -143,6 +147,7 @@ export default function Home() {
               </div>
             </Remarked>
 
+            {/* CV & TOOLS */}
             <Remarked className="h-80 min-h-80 w-full">
               <div className="h-full w-full rounded-2xl bg-secondary/10 p-4 shadow-inner-lg">
                 <div className="flex size-full gap-6 rounded-xl border border-secondary/20 p-4">
@@ -153,51 +158,62 @@ export default function Home() {
                   >
                     <CV className="size-20 min-w-20 fill-primary/70" />
                     <ArrowDown className="absolute bottom-20 right-14 size-6 min-w-6 -translate-x-1 -translate-y-1 animate-bounce" />
+                    <Minus className="absolute bottom-16 right-14 size-6 min-w-6 -translate-y-1.5" />
                   </a>
 
-                  <div className="flex size-full flex-col justify-around">
-                    <div className="flex items-center justify-center gap-8 [&>*]:size-12">
-                      <TechItem Svg={React} content="ReactJS" />
-                      <TechItem
-                        Svg={NextJS}
-                        content="NEXT.js"
-                        className="fill-primary"
-                      />
-                      <TechItem Svg={Typescript} content="TypeScript" />
-                      <TechItem Svg={TailwindCSS} content="Tailwind CSS" />
+                  <div className="flex size-full flex-col gap-2">
+                    <div className="flex h-8 items-center justify-center gap-2 self-center rounded-full bg-secondary/15 pl-3 pr-4">
+                      <Wrench className="size-5 min-w-5 stroke-1" />
+                      <span className="text-lg uppercase">Tools</span>
                     </div>
-                    <div className="flex items-center justify-center gap-8 [&>*]:size-12">
-                      <TechItem Svg={Go} content="Golang" />
-                      <TechItem Svg={Docker} content="Docker" />
-                      <TechItem Svg={MySQL} content="MySQL" />
-                      <TechItem
-                        Svg={AWSEC2}
-                        content="AWS EC2"
-                        className="fill-primary/60"
-                      />
-                      <TechItem Svg={NodeJS} content="NodeJS" />
-                    </div>
-                    <div className="flex items-center justify-center gap-8 [&>*]:size-12">
-                      <TechItem
-                        Svg={Websocket}
-                        content="Websockets"
-                        className="fill-primary/60"
-                      />
-                      <TechItem
-                        Svg={Chart}
-                        content="Charts"
-                        className="fill-primary/60"
-                      />
-                      <TechItem
-                        Svg={Maps}
-                        content="Maps"
-                        className="stroke-primary/60"
-                      />
-                      <TechItem
-                        Svg={Diagram}
-                        content="Diagrams"
-                        className="stroke-primary/60"
-                      />
+
+                    <div className="flex size-full flex-col justify-evenly">
+                      {/* Frontend */}
+                      <div className="flex items-center justify-center gap-x-8">
+                        <TechItem Svg={React} content="ReactJS" />
+                        <TechItem
+                          Svg={NextJS}
+                          content="NEXT.js"
+                          className="fill-primary"
+                        />
+                        <TechItem Svg={Typescript} content="TypeScript" />
+                        <TechItem Svg={TailwindCSS} content="Tailwind CSS" />
+                      </div>
+                      {/* Backend */}
+                      <div className="flex items-center justify-center gap-x-8">
+                        <TechItem Svg={Go} content="Golang" />
+                        <TechItem Svg={Docker} content="Docker" />
+                        <TechItem Svg={MySQL} content="MySQL" />
+                        <TechItem
+                          Svg={AWSEC2}
+                          content="AWS EC2"
+                          className="fill-primary/60"
+                        />
+                        <TechItem Svg={NodeJS} content="NodeJS" />
+                      </div>
+                      {/* General */}
+                      <div className="flex items-center justify-center gap-x-8">
+                        <TechItem
+                          Svg={Websocket}
+                          content="Websockets"
+                          className="fill-primary/60"
+                        />
+                        <TechItem
+                          Svg={Chart}
+                          content="Charts"
+                          className="fill-primary/60"
+                        />
+                        <TechItem
+                          Svg={Maps}
+                          content="Maps"
+                          className="stroke-primary/60"
+                        />
+                        <TechItem
+                          Svg={Diagram}
+                          content="Diagrams"
+                          className="stroke-primary/60"
+                        />
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -205,6 +221,7 @@ export default function Home() {
             </Remarked>
           </section>
 
+          {/* DIAGRAM */}
           <Remarked className="h-full w-1/2">
             <div className="size-full rounded-2xl bg-secondary/10 p-4 shadow-inner-lg">
               <div className="size-full rounded-xl border border-secondary/20">
@@ -215,8 +232,39 @@ export default function Home() {
         </div>
 
         <section className="flex h-80">
+          {/* MIS IDEAS PINTADAS */}
           <Remarked className="h-full w-full">
             <div className="relative flex h-full w-full gap-8 overflow-hidden rounded-2xl bg-secondary/10 p-4 shadow-inner-lg">
+              <div className="z-10 flex h-full w-2/5 flex-col justify-between gap-2">
+                <div className="flex items-center gap-3 pl-2">
+                  <div className="flex h-8 items-center justify-center gap-2 self-center rounded-full bg-secondary/15 pl-3 pr-4">
+                    <FolderOpen className="size-5 min-w-5" />
+                    <span className="text-lg uppercase">Project</span>
+                  </div>
+                  <UserRound className="size-9 text-primary/70" />
+                  <a
+                    href="https://misideaspintadas.com.ar/"
+                    className="mr-2 flex items-center gap-5"
+                  >
+                    <SquareArrowOutUpRight className="size-6 min-w-6" />
+                  </a>
+                </div>
+                <div className="flex flex-col gap-2 p-4">
+                  <p className="text-nowrap text-2xl italic text-primary/70">
+                    Ecommerce - Full App Development
+                  </p>
+                  <div className="text-nowrap text-5xl font-semibold text-primary">
+                    Mis Ideas Pintadas
+                  </div>
+                  {/* <div className="glitch text-nowrap text-6xl font-semibold text-primary">
+                    {Array.from({ length: 11 }).map((_, i) => (
+                      <span key={i} className="line">
+                        Mis Ideas Pintadas
+                      </span>
+                    ))}
+                  </div> */}
+                </div>
+              </div>
               <div className="group z-10 flex h-full w-3/5 gap-1.5">
                 {mip.map((image, i) => (
                   <div
@@ -234,32 +282,6 @@ export default function Home() {
                   </div>
                 ))}
               </div>
-              <div className="z-10 flex h-full w-2/5 flex-col items-end justify-between gap-2">
-                <div className="flex items-center gap-3">
-                  <a
-                    href="https://misideaspintadas.com.ar/"
-                    className="mr-2 flex items-center gap-5"
-                  >
-                    <SquareArrowOutUpRight className="size-6 min-w-6" />
-                  </a>
-                  <UserRound className="size-9 text-primary/70" />
-                </div>
-                <div className="flex flex-col justify-end gap-2 p-4 text-end">
-                  <p className="text-nowrap text-2xl italic text-primary/70">
-                    Ecommerce - Full App Development
-                  </p>
-                  <div className="text-nowrap text-5xl font-semibold text-primary">
-                    Mis Ideas Pintadas
-                  </div>
-                  {/* <div className="glitch text-nowrap text-6xl font-semibold text-primary">
-                    {Array.from({ length: 11 }).map((_, i) => (
-                      <span key={i} className="line">
-                        Mis Ideas Pintadas
-                      </span>
-                    ))}
-                  </div> */}
-                </div>
-              </div>
 
               {animations && (
                 <>
@@ -272,7 +294,7 @@ export default function Home() {
                     loop
                     className={cn(
                       theme === "dark" ? "opacity-0" : "opacity-30",
-                      "grad1 absolute right-0 top-0 z-0 h-full w-96 object-cover",
+                      "grad1 absolute left-0 top-0 z-0 h-full w-96 object-cover",
                     )}
                   />
                   <video
@@ -284,7 +306,7 @@ export default function Home() {
                     loop
                     className={cn(
                       theme === "dark" ? "opacity-20" : "opacity-0",
-                      "grad1 absolute right-0 top-0 z-0 h-full w-96 object-cover",
+                      "grad1 absolute left-0 top-0 z-0 h-full w-96 object-cover",
                     )}
                   />
                 </>
@@ -294,8 +316,39 @@ export default function Home() {
         </section>
 
         <section className="flex h-80">
+          {/* SEAT CONTROL */}
           <Remarked className="h-full w-full">
             <div className="relative flex h-full w-full gap-8 overflow-hidden rounded-2xl bg-secondary/10 p-4 shadow-inner-lg">
+              <div className="z-10 flex h-full w-2/5 flex-col items-start justify-between gap-2">
+                <div className="flex items-center gap-3 pl-2">
+                  <div className="flex h-8 items-center justify-center gap-2 self-center rounded-full bg-secondary/15 pl-3 pr-4">
+                    <FolderOpen className="size-5 min-w-5" />
+                    <span className="text-lg uppercase">Project</span>
+                  </div>
+                  <DPSColorLogo className="size-14 fill-primary/70" />
+                  <a
+                    href="https://www.stctrl.com.ar/"
+                    className="flex items-center gap-3"
+                  >
+                    <SquareArrowOutUpRight className="size-6 min-w-6" />
+                  </a>
+                </div>
+                <div className="flex flex-col gap-2 p-4">
+                  <p className="text-nowrap text-2xl italic text-primary/70">
+                    Full Frontend Development
+                  </p>
+                  <div className="text-6xl text-primary">
+                    Seat<b>Control</b>
+                  </div>
+                  {/* <div className="glitch text-6xl text-primary/70">
+                    {Array.from({ length: 11 }).map((_, i) => (
+                      <span key={i} className="line">
+                        Seat<b>Control</b>
+                      </span>
+                    ))}
+                  </div> */}
+                </div>
+              </div>
               <div className="group z-10 flex h-full w-3/5 gap-1.5">
                 {sc.map((image, i) => (
                   <div
@@ -313,38 +366,12 @@ export default function Home() {
                   </div>
                 ))}
               </div>
-              <div className="z-10 flex h-full w-2/5 flex-col items-end justify-between gap-2">
-                <div className="flex items-center gap-3">
-                  <a
-                    href="https://www.stctrl.com.ar/"
-                    className="flex items-center gap-3"
-                  >
-                    <SquareArrowOutUpRight className="size-6 min-w-6" />
-                  </a>
-                  <DPSColorLogo className="size-14 fill-primary/70" />
-                </div>
-                <div className="flex flex-col justify-end gap-2 p-4 text-end">
-                  <p className="text-nowrap text-2xl italic text-primary/70">
-                    Full Frontend Development
-                  </p>
-                  <div className="text-6xl text-primary">
-                    Seat<b>Control</b>
-                  </div>
-                  {/* <div className="glitch text-6xl text-primary/70">
-                    {Array.from({ length: 11 }).map((_, i) => (
-                      <span key={i} className="line">
-                        Seat<b>Control</b>
-                      </span>
-                    ))}
-                  </div> */}
-                </div>
-              </div>
 
               {animations && (
                 <Image
                   alt="SCTrackng"
                   src={SCTrackng}
-                  className="grad1 absolute right-0 top-0 z-0 h-full object-cover opacity-30"
+                  className="grad1 absolute left-0 top-0 z-0 h-full object-cover opacity-30"
                 />
               )}
             </div>
@@ -352,8 +379,39 @@ export default function Home() {
         </section>
 
         <section className="flex h-80 gap-8">
+          {/* DPS */}
           <Remarked className="h-full w-full">
             <div className="relative flex h-full w-full gap-8 overflow-hidden rounded-2xl bg-secondary/10 p-4 shadow-inner-lg">
+              <div className="flex h-full w-2/5 flex-col justify-between gap-2">
+                <div className="flex items-center gap-3 pl-2">
+                  <div className="flex h-8 items-center justify-center gap-2 self-center rounded-full bg-secondary/15 pl-3 pr-4">
+                    <FolderOpen className="size-5 min-w-5" />
+                    <span className="text-lg uppercase">Project</span>
+                  </div>
+                  <DPSColorLogo className="size-14 fill-primary/70" />
+                  <a
+                    href="https://www.dpssoftware.com.ar/"
+                    className="flex items-center gap-3"
+                  >
+                    <SquareArrowOutUpRight className="size-6 min-w-6" />
+                  </a>
+                </div>
+                <div className="flex flex-col gap-2 p-4">
+                  <p className="text-nowrap text-2xl italic text-primary/70">
+                    Landing Page
+                  </p>
+                  <div className="glitch text-6xl font-semibold text-primary">
+                    DPS
+                  </div>
+                  {/* <div className="glitch self-end text-6xl font-semibold text-primary">
+                    {Array.from({ length: 11 }).map((_, i) => (
+                      <span key={i} className="line">
+                        DPS
+                      </span>
+                    ))}
+                  </div> */}
+                </div>
+              </div>
               <div className="group flex h-full w-3/5 gap-1.5">
                 {dpsImages.map((image, i) => (
                   <div
@@ -371,37 +429,39 @@ export default function Home() {
                   </div>
                 ))}
               </div>
-              <div className="flex h-full w-2/5 flex-col items-end justify-between gap-2">
-                <div className="flex items-center gap-3">
-                  <a
-                    href="https://www.dpssoftware.com.ar/"
-                    className="flex items-center gap-3"
-                  >
+            </div>
+          </Remarked>
+
+          {/* SIGGA */}
+          <Remarked className="h-full w-full">
+            <div className="flex h-full w-full gap-8 rounded-2xl bg-secondary/10 p-4 shadow-inner-lg">
+              <div className="flex h-full w-2/5 flex-col justify-between gap-2">
+                <div className="flex items-center gap-3 pl-2">
+                  <div className="flex h-8 items-center justify-center gap-2 self-center rounded-full bg-secondary/15 pl-3 pr-4">
+                    <FolderOpen className="size-5 min-w-5" />
+                    <span className="text-lg uppercase">Project</span>
+                  </div>
+                  <DPSColorLogo className="size-14 fill-primary/70" />
+                  <a href="https://www.sigga.com.ar/">
                     <SquareArrowOutUpRight className="size-6 min-w-6" />
                   </a>
-                  <DPSColorLogo className="size-14 fill-primary/70" />
                 </div>
-                <div className="flex flex-col justify-end gap-2 p-4 text-end">
+                <div className="flex flex-col gap-2 p-4">
                   <p className="text-nowrap text-2xl italic text-primary/70">
                     Landing Page
                   </p>
-                  <div className="glitch self-end text-6xl font-semibold text-primary">
-                    DPS
+                  <div className="glitch text-6xl font-semibold text-primary">
+                    SIGGA
                   </div>
-                  {/* <div className="glitch self-end text-6xl font-semibold text-primary">
+                  {/* <div className="glitch self-end text-6xl font-semibold text-primary/70">
                     {Array.from({ length: 11 }).map((_, i) => (
                       <span key={i} className="line">
-                        DPS
+                        SIGGA
                       </span>
                     ))}
                   </div> */}
                 </div>
               </div>
-            </div>
-          </Remarked>
-
-          <Remarked className="h-full w-full">
-            <div className="flex h-full w-full gap-8 rounded-2xl bg-secondary/10 p-4 shadow-inner-lg">
               <div className="group flex h-full w-3/5 gap-1.5">
                 {siggaImages.map((image, i) => (
                   <div
@@ -419,29 +479,6 @@ export default function Home() {
                   </div>
                 ))}
               </div>
-              <div className="flex h-full w-2/5 flex-col items-end justify-between gap-2">
-                <div className="flex items-center gap-3">
-                  <a href="https://www.sigga.com.ar/">
-                    <SquareArrowOutUpRight className="size-6 min-w-6" />
-                  </a>
-                  <DPSColorLogo className="size-14 fill-primary/70" />
-                </div>
-                <div className="flex flex-col items-end justify-end gap-2 p-4 text-end">
-                  <p className="text-nowrap text-2xl italic text-primary/70">
-                    Landing Page
-                  </p>
-                  <div className="glitch self-end text-6xl font-semibold text-primary">
-                    SIGGA
-                  </div>
-                  {/* <div className="glitch self-end text-6xl font-semibold text-primary/70">
-                    {Array.from({ length: 11 }).map((_, i) => (
-                      <span key={i} className="line">
-                        SIGGA
-                      </span>
-                    ))}
-                  </div> */}
-                </div>
-              </div>
             </div>
           </Remarked>
         </section>
@@ -450,14 +487,14 @@ export default function Home() {
       {/* ASIDE */}
       <div className="h-auto w-80 min-w-80 gap-8">
         <div className="sticky top-16 flex h-[calc(100vh-128px)] w-full flex-col gap-8">
-          <Remarked className="size-full">
+          <Remarked className="h-full w-full">
             <div
               // onMouseOver={setHover}
               // onMouseLeave={clearState}
               onClick={switchTheme}
               className={cn(
                 loaded ? "opacity-100" : "opacity-0",
-                "group relative flex size-full h-full cursor-pointer items-center justify-center overflow-hidden rounded-2xl bg-secondary/10 shadow-inner-lg transition-all",
+                "group relative flex h-full w-full cursor-pointer items-center justify-center overflow-hidden rounded-2xl bg-secondary/10 shadow-inner-lg transition-all",
               )}
             >
               <div
@@ -513,14 +550,14 @@ export default function Home() {
             <a
               // onMouseOver={setHover}
               // onMouseLeave={clearState}
-              href="https://platzi.com/p/german432/"
+              href="https://www.linkedin.com/in/german-gohringer/"
               target="_blank"
               className={cn(
                 loaded ? "opacity-100" : "opacity-0",
                 "group flex h-full w-full items-center justify-center rounded-2xl bg-secondary/10 p-4 shadow-inner-lg transition-all delay-300",
               )}
             >
-              <PlatziLogo className="size-10 fill-primary/70 transition-all group-hover:scale-110" />
+              <LinkedinLogo className="size-9 fill-primary/70 transition-all group-hover:scale-110" />
               <div
                 className={cn(
                   loaded ? "opacity-100" : "opacity-0",
@@ -534,14 +571,14 @@ export default function Home() {
             <a
               // onMouseOver={setHover}
               // onMouseLeave={clearState}
-              href="https://www.linkedin.com/in/german-gohringer/"
+              href="https://platzi.com/p/german432/"
               target="_blank"
               className={cn(
                 loaded ? "opacity-100" : "opacity-0",
                 "group flex h-full w-full items-center justify-center rounded-2xl bg-secondary/10 p-4 shadow-inner-lg transition-all delay-450",
               )}
             >
-              <LinkedinLogo className="size-9 fill-primary/70 transition-all group-hover:scale-110" />
+              <PlatziLogo className="size-10 fill-primary/70 transition-all group-hover:scale-110" />
               <div
                 className={cn(
                   loaded ? "opacity-100" : "opacity-0",

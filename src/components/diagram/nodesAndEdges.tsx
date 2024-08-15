@@ -437,12 +437,13 @@ export const initialEdges: Edge[] = [
     id: "university-dpsdpssoftware",
     source: "university",
     target: "dpssoftware",
-    type: "default",
     markerEnd: {
-      type: MarkerType.Arrow,
-      width: 40,
-      height: 40,
+      type: MarkerType.ArrowClosed,
+      width: 20,
+      height: 20,
     },
+    type: "default",
+    style: { strokeWidth: 2 },
   },
   {
     id: "platzi-dpssoftware",
@@ -451,11 +452,12 @@ export const initialEdges: Edge[] = [
     sourceHandle: "right",
     targetHandle: "left",
     markerEnd: {
-      type: MarkerType.Arrow,
-      width: 40,
-      height: 40,
+      type: MarkerType.ArrowClosed,
+      width: 20,
+      height: 20,
     },
     type: "default",
+    style: { strokeWidth: 2 },
   },
   {
     id: "dpssoftware-dps_projects",
@@ -464,11 +466,12 @@ export const initialEdges: Edge[] = [
     sourceHandle: "right",
     targetHandle: "left",
     markerEnd: {
-      type: MarkerType.Arrow,
-      width: 40,
-      height: 40,
+      type: MarkerType.ArrowClosed,
+      width: 20,
+      height: 20,
     },
     type: "default",
+    style: { strokeWidth: 2 },
   },
   {
     id: "dpssoftware-dps_knowledge",
@@ -477,11 +480,12 @@ export const initialEdges: Edge[] = [
     sourceHandle: "right",
     targetHandle: "left",
     markerEnd: {
-      type: MarkerType.Arrow,
-      width: 40,
-      height: 40,
+      type: MarkerType.ArrowClosed,
+      width: 20,
+      height: 20,
     },
     type: "default",
+    style: { strokeWidth: 2 },
   },
 
   {
@@ -491,11 +495,12 @@ export const initialEdges: Edge[] = [
     sourceHandle: "bottom",
     targetHandle: "top",
     markerEnd: {
-      type: MarkerType.Arrow,
-      width: 40,
-      height: 40,
+      type: MarkerType.ArrowClosed,
+      width: 20,
+      height: 20,
     },
     type: "default",
+    style: { strokeWidth: 2 },
   },
   {
     id: "freelance-freelance_projects",
@@ -504,11 +509,12 @@ export const initialEdges: Edge[] = [
     target: "freelance_projects",
     targetHandle: "left",
     markerEnd: {
-      type: MarkerType.Arrow,
-      width: 40,
-      height: 40,
+      type: MarkerType.ArrowClosed,
+      width: 20,
+      height: 20,
     },
     type: "default",
+    style: { strokeWidth: 2 },
   },
   {
     id: "freelance-freelance_knowledge",
@@ -517,10 +523,11 @@ export const initialEdges: Edge[] = [
     sourceHandle: "right",
     targetHandle: "left",
     markerEnd: {
-      type: MarkerType.Arrow,
-      width: 40,
-      height: 40,
+      type: MarkerType.ArrowClosed,
+      width: 20,
+      height: 20,
     },
     type: "default",
+    style: { strokeWidth: 2 },
   },
 ];

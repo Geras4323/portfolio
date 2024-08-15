@@ -11,7 +11,7 @@ import { ParentNode, type NodeData, JobNode, DefaultNode } from "./customNodes";
 import { initialNodes, initialEdges } from "./nodesAndEdges";
 import { useState } from "react";
 import { CTRL } from "public/special/ctrl";
-import { Equal, Plus, Search } from "lucide-react";
+import { BriefcaseBusiness, Equal, Plus, Search } from "lucide-react";
 import { Scroll } from "public/special/scroll";
 
 const nodeTypes = {
@@ -60,12 +60,19 @@ export const CareerDiagram = () => {
         />
 
         <Panel position="top-left">
-          <div className="flex w-fit -translate-x-4 items-center gap-0.5 rounded-md bg-black/5 fill-primary/80 px-2 py-1 text-primary/80 opacity-0 backdrop-blur-sm transition-all delay-300 group-hover:-translate-x-0 group-hover:opacity-100">
-            <Search className="size-6" />
-            <Equal className="size-5 stroke-2" />
-            <CTRL className="size-8" />
-            <Plus className="size-5 stroke-2" />
-            <Scroll className="-ml-1 size-8" />
+          <div className="flex h-8 items-center justify-center gap-2 self-center rounded-full bg-secondary/15 px-4 backdrop-blur-sm">
+            <BriefcaseBusiness className="size-5 min-w-5" />
+            <span className="text-lg uppercase">Professional Career</span>
+          </div>
+        </Panel>
+
+        <Panel position="bottom-left">
+          <div className="flex h-8 w-fit -translate-x-4 items-center gap-0.5 rounded-full bg-secondary/15 fill-primary/80 px-2 py-1 text-primary/80 opacity-0 backdrop-blur-sm transition-all delay-300 group-hover:-translate-x-0 group-hover:opacity-100">
+            <Search className="size-5" />
+            <Equal className="size-4 stroke-2" />
+            <CTRL className="size-7" />
+            <Plus className="size-4 stroke-2" />
+            <Scroll className="-ml-1 size-7" />
           </div>
         </Panel>
       </ReactFlow>

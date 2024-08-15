@@ -14,7 +14,7 @@ export function TechItem({
   return (
     <Tooltip>
       <TooltipTrigger>
-        <Svg className={cn(!!className && className, "size-12")} />
+        <Svg className={cn(!!className && className, "size-11")} />
       </TooltipTrigger>
       <TooltipContent
         sideOffset={5}
