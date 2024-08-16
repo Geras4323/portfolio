@@ -39,6 +39,7 @@ import SiggaFooter from "../../public/sigga/footer.png";
 //
 import DPSBrands from "../../public/dps/brands.png";
 import DPSProducts from "../../public/dps/products.png";
+//
 import { CV } from "public/special/cv";
 import { React } from "public/techs/react";
 import { Typescript } from "public/techs/typescript";
@@ -75,11 +76,16 @@ const dpsImages: StaticImageData[] = [DPSBrands, DPSProducts];
 export default function Home() {
   const { theme, switchTheme } = useThemeSwitcher();
 
-  const [loaded, setLoaded] = useState(false);
-  const [animations, setAnimations] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [animations] = useState(true);
 
   useEffect(() => {
-    setLoaded(true);
+    setIsLoading(false);
+    const timeout = setTimeout(() => {
+      setIsLoaded(true);
+    }, 100);
+    return () => clearTimeout(timeout);
   }, []);
 
   const mip =
@@ -90,6 +96,8 @@ export default function Home() {
   const sc =
     theme === "dark" ? seatcontrolImages.dark : seatcontrolImages.light;
 
+  if (isLoading) return;
+
   return (
     <div
       className={cn(
@@ -98,12 +106,11 @@ export default function Home() {
           : "bg-gradient-to-bl from-[#e2dccfff] to-white",
         "flex h-fit min-h-screen w-full gap-8 overflow-clip bg-fixed p-16 backdrop-blur-sm",
       )}
-      // className="flex h-fit min-h-screen w-full gap-8 overflow-clip p-16"
     >
-      <button
+      {/* <button
         onClick={() => setAnimations((prev) => !prev)}
         className="fixed right-0 top-0 size-8"
-      />
+      /> */}
 
       {/* CONTENT */}
       <div className="flex w-full flex-col gap-8">
@@ -493,7 +500,7 @@ export default function Home() {
               // onMouseLeave={clearState}
               onClick={switchTheme}
               className={cn(
-                loaded ? "opacity-100" : "opacity-0",
+                isLoaded ? "opacity-100" : "opacity-0",
                 "group relative flex h-full w-full cursor-pointer items-center justify-center overflow-hidden rounded-2xl bg-secondary/10 shadow-inner-lg transition-all",
               )}
             >
@@ -518,7 +525,7 @@ export default function Home() {
               </div>
               <div
                 className={cn(
-                  loaded ? "opacity-100" : "opacity-0",
+                  isLoaded ? "opacity-100" : "opacity-0",
                   "absolute z-0 size-24 rounded-full bg-gradient-radial from-white/50 via-transparent to-transparent blur-xl transition-all delay-600 group-hover:from-white/60 group-hover:via-transparent",
                 )}
               />
@@ -532,14 +539,14 @@ export default function Home() {
               href="https://github.com/Geras4323"
               target="_blank"
               className={cn(
-                loaded ? "opacity-100" : "opacity-0",
+                isLoaded ? "opacity-100" : "opacity-0",
                 "group flex h-full w-full items-center justify-center rounded-2xl bg-secondary/10 p-4 shadow-inner-lg transition-all delay-150",
               )}
             >
               <GitHubSVG className="size-10 fill-primary/70 transition-all group-hover:scale-110" />
               <div
                 className={cn(
-                  loaded ? "opacity-100" : "opacity-0",
+                  isLoaded ? "opacity-100" : "opacity-0",
                   "absolute z-0 size-24 rounded-full bg-gradient-radial from-white/50 via-transparent to-transparent blur-xl transition-all delay-750 group-hover:from-white/60 group-hover:via-transparent",
                 )}
               />
@@ -553,14 +560,14 @@ export default function Home() {
               href="https://www.linkedin.com/in/german-gohringer/"
               target="_blank"
               className={cn(
-                loaded ? "opacity-100" : "opacity-0",
+                isLoaded ? "opacity-100" : "opacity-0",
                 "group flex h-full w-full items-center justify-center rounded-2xl bg-secondary/10 p-4 shadow-inner-lg transition-all delay-300",
               )}
             >
               <LinkedinLogo className="size-9 fill-primary/70 transition-all group-hover:scale-110" />
               <div
                 className={cn(
-                  loaded ? "opacity-100" : "opacity-0",
+                  isLoaded ? "opacity-100" : "opacity-0",
                   "absolute z-0 size-24 rounded-full bg-gradient-radial from-white/50 via-transparent to-transparent blur-xl transition-all delay-900 group-hover:from-white/60 group-hover:via-transparent",
                 )}
               />
@@ -574,14 +581,14 @@ export default function Home() {
               href="https://platzi.com/p/german432/"
               target="_blank"
               className={cn(
-                loaded ? "opacity-100" : "opacity-0",
+                isLoaded ? "opacity-100" : "opacity-0",
                 "group flex h-full w-full items-center justify-center rounded-2xl bg-secondary/10 p-4 shadow-inner-lg transition-all delay-450",
               )}
             >
               <PlatziLogo className="size-10 fill-primary/70 transition-all group-hover:scale-110" />
               <div
                 className={cn(
-                  loaded ? "opacity-100" : "opacity-0",
+                  isLoaded ? "opacity-100" : "opacity-0",
                   // "delay-1050 absolute z-0 size-10 rounded-full bg-white/50 blur-md transition-all",
                   "absolute z-0 size-24 rounded-full bg-gradient-radial from-white/50 via-transparent to-transparent blur-xl transition-all delay-1050 group-hover:from-white/60 group-hover:via-transparent",
                 )}
