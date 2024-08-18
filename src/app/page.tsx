@@ -55,6 +55,7 @@ import { AWSEC2 } from "public/techs/awsec2";
 import { Docker } from "public/techs/docker";
 import { NodeJS } from "public/techs/nodejs";
 import { TechItem } from "@/components/techItem";
+import { mqs, useMediaQueries } from "@/hooks/screen";
 
 const misideaspintadasImages: {
   dark: StaticImageData[];
@@ -64,21 +65,32 @@ const misideaspintadasImages: {
   light: [ShowroomLight, OrdersLight],
 };
 
-const seatcontrolImages: { dark: StaticImageData[]; light: StaticImageData[] } =
-  {
-    dark: [SCTrackingDark, SCSupportDark, SCAuditDark],
-    light: [SCTrackingLight, SCSupportLight, SCAuditLight],
-  };
-
 const siggaImages: StaticImageData[] = [SiggaTop, SiggaFooter];
 const dpsImages: StaticImageData[] = [DPSBrands, DPSProducts];
 
 export default function Home() {
   const { theme, switchTheme } = useThemeSwitcher();
+  const mq = useMediaQueries();
 
   const [isLoading, setIsLoading] = useState(true);
   const [isLoaded, setIsLoaded] = useState(false);
   const [animations] = useState(true);
+
+  const seatcontrolImages: {
+    dark: StaticImageData[];
+    light: StaticImageData[];
+  } = {
+    dark: [
+      SCTrackingDark,
+      mq >= mqs.sm ? SCSupportDark : null,
+      SCAuditDark,
+    ].filter((image) => image !== null),
+    light: [
+      SCTrackingLight,
+      mq >= mqs.sm ? SCSupportLight : null,
+      SCAuditLight,
+    ].filter((image) => image !== null),
+  };
 
   useEffect(() => {
     setIsLoading(false);
@@ -104,7 +116,7 @@ export default function Home() {
         theme === "dark"
           ? "bg-gradient-to-br from-[#9619c840] via-black to-[#033bc840]"
           : "bg-gradient-to-bl from-[#e2dccfff] to-white",
-        "flex h-fit min-h-screen w-full gap-8 overflow-clip bg-fixed p-16 backdrop-blur-sm",
+        "flex h-fit min-h-screen w-full gap-6 overflow-clip bg-fixed p-6 backdrop-blur-sm 2xl:gap-8 2xl:p-16",
       )}
     >
       {/* <button
@@ -113,17 +125,17 @@ export default function Home() {
       /> */}
 
       {/* CONTENT */}
-      <div className="flex w-full flex-col gap-8">
-        <div className="flex w-full gap-8">
-          <section className="flex w-1/2 flex-col justify-between gap-8">
+      <div className="flex w-full flex-col gap-6 2xl:gap-8">
+        <div className="flex w-full gap-6 2xl:gap-8">
+          <section className="flex w-full flex-col justify-between gap-6 2xl:w-1/2 2xl:gap-8">
             {/* NAME */}
-            <Remarked className="h-80 min-h-80 w-full">
-              <div className="flex h-full w-full flex-col justify-between gap-4 rounded-2xl bg-secondary/10 p-8 shadow-inner-lg">
+            <Remarked className="h-fit min-h-80 w-full 2xl:h-80">
+              <div className="flex h-full w-full flex-col justify-between gap-6 rounded-2xl bg-secondary/10 p-4 shadow-inner-lg 2xl:gap-4 2xl:p-8">
                 <div className="flex flex-col gap-4 text-primary/70">
-                  <p className="text-5xl font-semibold uppercase tracking-wide">
+                  <p className="text-4xl font-semibold uppercase tracking-wide 2xl:text-5xl">
                     Germán Göhringer
                   </p>
-                  <p className="text-3xl uppercase tracking-wide">
+                  <p className="text-2xl uppercase tracking-wide 2xl:text-3xl">
                     Frontend Developer
                   </p>
                 </div>
@@ -142,7 +154,7 @@ export default function Home() {
                             "Born to be better",
                             4000,
                           ]}
-                          className="inline-block text-lg uppercase tracking-wide lg:text-4xl"
+                          className="inline-block text-2xl uppercase tracking-wide lg:text-4xl"
                           wrapper="span"
                           repeat={Infinity}
                           cursor={false}
@@ -151,17 +163,116 @@ export default function Home() {
                     ))}
                   </div>
                 )}
+
+                {/* CV AND LIGHT/DARK - MOBILE */}
+                <div className="grid h-24 min-h-24 w-full grid-cols-3 gap-4 2xl:hidden">
+                  <a
+                    href="./CV - GERMAN GOHRINGER - FRONTEND DEVELOPER.pdf"
+                    download
+                    className="relative col-span-2 flex size-full cursor-pointer items-center justify-center rounded-lg bg-secondary/10 shadow-md transition-all duration-300 hover:bg-secondary/15 2xl:hidden"
+                  >
+                    <div className="relative">
+                      <CV className="size-16 min-w-16 fill-primary/70 2xl:size-20 2xl:min-w-20" />
+                      <ArrowDown className="absolute -bottom-1 right-0 size-5 min-w-5 animate-bounce" />
+                      <Minus className="absolute right-0 -my-2 size-5 min-w-5" />
+                    </div>
+                  </a>
+
+                  <div
+                    onClick={switchTheme}
+                    className={cn(
+                      "group relative col-span-1 flex size-full cursor-pointer items-center justify-center overflow-hidden rounded-xl bg-secondary/10 shadow-md transition-all 2xl:h-full",
+                    )}
+                  >
+                    <div
+                      className={cn(
+                        theme === "dark" && "rotate-180",
+                        "absolute left-1/2 top-full flex h-full w-8 -translate-x-1/2 -translate-y-1/2 transform flex-col justify-between rounded-lg text-primary/70 transition-transform duration-700 2xl:w-10",
+                      )}
+                    >
+                      <Sun
+                        className={cn(
+                          theme === "light" && "rotate-180",
+                          "absolute -top-5 size-8 transition-transform duration-700 2xl:size-10",
+                        )}
+                      />
+                      <Moon
+                        className={cn(
+                          theme === "dark" && "-rotate-180",
+                          "absolute -bottom-5 size-8 transition-transform duration-700 2xl:size-10",
+                        )}
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </Remarked>
+
+            {/* LINKS MOBILE */}
+            <Remarked className="h-fit min-h-16 w-full 2xl:hidden">
+              <div className="grid size-full grid-cols-3 gap-4 bg-secondary/5 px-4 py-2">
+                <a
+                  href="https://github.com/Geras4323"
+                  target="_blank"
+                  className={cn(
+                    isLoaded ? "opacity-100" : "opacity-0",
+                    "group flex size-full items-center justify-center rounded-xl bg-secondary/10 p-4 shadow-inner-lg transition-all delay-150 2xl:h-full",
+                  )}
+                >
+                  <GitHubSVG className="size-8 fill-primary/70 transition-all group-hover:scale-110 2xl:size-10" />
+                  <div
+                    className={cn(
+                      isLoaded ? "opacity-100" : "opacity-0",
+                      "absolute z-0 size-20 rounded-full bg-gradient-radial from-white/50 via-transparent to-transparent blur-xl transition-all delay-750 group-hover:from-white/60 group-hover:via-transparent",
+                    )}
+                  />
+                </a>
+
+                <a
+                  href="https://www.linkedin.com/in/german-gohringer/"
+                  target="_blank"
+                  className={cn(
+                    isLoaded ? "opacity-100" : "opacity-0",
+                    "group flex size-full items-center justify-center rounded-xl bg-secondary/10 p-4 shadow-inner-lg transition-all delay-300 2xl:h-full",
+                  )}
+                >
+                  <LinkedinLogo className="size-7 fill-primary/70 transition-all group-hover:scale-110 2xl:size-9" />
+                  <div
+                    className={cn(
+                      isLoaded ? "opacity-100" : "opacity-0",
+                      "absolute z-0 size-20 rounded-full bg-gradient-radial from-white/50 via-transparent to-transparent blur-xl transition-all delay-900 group-hover:from-white/60 group-hover:via-transparent",
+                    )}
+                  />
+                </a>
+
+                <a
+                  href="https://platzi.com/p/german432/"
+                  target="_blank"
+                  className={cn(
+                    isLoaded ? "opacity-100" : "opacity-0",
+                    "group flex size-full items-center justify-center rounded-xl bg-secondary/10 p-4 shadow-inner-lg transition-all delay-450 2xl:h-full",
+                  )}
+                >
+                  <PlatziLogo className="size-8 fill-primary/70 transition-all group-hover:scale-110 2xl:size-10" />
+                  <div
+                    className={cn(
+                      isLoaded ? "opacity-100" : "opacity-0",
+                      // "delay-1050 absolute z-0 size-10 rounded-full bg-white/50 blur-md transition-all",
+                      "absolute z-0 size-20 rounded-full bg-gradient-radial from-white/50 via-transparent to-transparent blur-xl transition-all delay-1050 group-hover:from-white/60 group-hover:via-transparent",
+                    )}
+                  />
+                </a>
               </div>
             </Remarked>
 
             {/* CV & TOOLS */}
-            <Remarked className="h-80 min-h-80 w-full">
+            <Remarked className="h-72 w-full 2xl:h-80 2xl:min-h-80">
               <div className="h-full w-full rounded-2xl bg-secondary/10 p-4 shadow-inner-lg">
                 <div className="flex size-full gap-6 rounded-xl border border-secondary/20 p-4">
                   <a
                     href="./CV - GERMAN GOHRINGER - FRONTEND DEVELOPER.pdf"
                     download
-                    className="relative flex h-full w-48 min-w-48 cursor-pointer items-center justify-center rounded-lg bg-secondary/10 shadow-md transition-all duration-300 hover:bg-secondary/15"
+                    className="relative hidden h-full w-48 min-w-48 cursor-pointer items-center justify-center rounded-lg bg-secondary/10 shadow-md transition-all duration-300 hover:bg-secondary/15 2xl:flex"
                   >
                     <CV className="size-20 min-w-20 fill-primary/70" />
                     <ArrowDown className="absolute bottom-20 right-14 size-6 min-w-6 -translate-x-1 -translate-y-1 animate-bounce" />
@@ -169,14 +280,13 @@ export default function Home() {
                   </a>
 
                   <div className="flex size-full flex-col gap-2">
-                    <div className="flex h-8 items-center justify-center gap-2 self-center rounded-full bg-secondary/15 pl-3 pr-4">
+                    <div className="flex h-8 items-center justify-center gap-2 self-center rounded-full bg-secondary/15 pl-3 pr-4 shadow-md">
                       <Wrench className="size-5 min-w-5 stroke-1" />
                       <span className="text-lg uppercase">Tools</span>
                     </div>
 
-                    <div className="flex size-full flex-col justify-evenly">
-                      {/* Frontend */}
-                      <div className="flex items-center justify-center gap-x-8">
+                    <div className="flex size-full flex-col justify-around 2xl:justify-evenly">
+                      <div className="flex items-center justify-center gap-6 2xl:gap-8">
                         <TechItem Svg={React} content="ReactJS" />
                         <TechItem
                           Svg={NextJS}
@@ -186,8 +296,7 @@ export default function Home() {
                         <TechItem Svg={Typescript} content="TypeScript" />
                         <TechItem Svg={TailwindCSS} content="Tailwind CSS" />
                       </div>
-                      {/* Backend */}
-                      <div className="flex items-center justify-center gap-x-8">
+                      <div className="flex items-center justify-center gap-6 2xl:gap-8">
                         <TechItem Svg={Go} content="Golang" />
                         <TechItem Svg={Docker} content="Docker" />
                         <TechItem Svg={MySQL} content="MySQL" />
@@ -198,8 +307,7 @@ export default function Home() {
                         />
                         <TechItem Svg={NodeJS} content="NodeJS" />
                       </div>
-                      {/* General */}
-                      <div className="flex items-center justify-center gap-x-8">
+                      <div className="flex items-center justify-center gap-6 2xl:gap-8">
                         <TechItem
                           Svg={Websocket}
                           content="Websockets"
@@ -229,7 +337,7 @@ export default function Home() {
           </section>
 
           {/* DIAGRAM */}
-          <Remarked className="h-full w-1/2">
+          <Remarked className="hidden h-full w-1/2 2xl:block">
             <div className="size-full rounded-2xl bg-secondary/10 p-4 shadow-inner-lg">
               <div className="size-full rounded-xl border border-secondary/20">
                 <CareerDiagram />
@@ -238,172 +346,164 @@ export default function Home() {
           </Remarked>
         </div>
 
-        <section className="flex h-80">
-          {/* MIS IDEAS PINTADAS */}
-          <Remarked className="h-full w-full">
-            <div className="relative flex h-full w-full gap-8 overflow-hidden rounded-2xl bg-secondary/10 p-4 shadow-inner-lg">
-              <div className="z-10 flex h-full w-2/5 flex-col justify-between gap-2">
-                <div className="flex items-center gap-3 pl-2">
-                  <div className="flex h-8 items-center justify-center gap-2 self-center rounded-full bg-secondary/15 pl-3 pr-4">
-                    <FolderOpen className="size-5 min-w-5" />
-                    <span className="text-lg uppercase">Project</span>
-                  </div>
-                  <UserRound className="size-9 text-primary/70" />
+        {/* MIS IDEAS PINTADAS */}
+        <Remarked className="h-fit w-full 2xl:h-80">
+          <div className="relative flex h-fit w-full flex-col gap-8 overflow-hidden rounded-2xl bg-secondary/10 p-4 shadow-inner-lg 2xl:h-full 2xl:flex-row">
+            <div className="z-20 flex h-full w-full flex-col justify-between gap-2 2xl:w-2/5">
+              <div className="flex items-center justify-between gap-3 pl-2 2xl:justify-start">
+                <div className="flex h-8 items-center justify-center gap-2 self-center rounded-full bg-secondary/15 pl-3 pr-4 shadow-md">
+                  <FolderOpen className="size-5 min-w-5" />
+                  <span className="text-lg uppercase">Project</span>
+                </div>
+                <div className="flex items-center gap-3 2xl:pr-0">
+                  <UserRound className="size-9 min-w-9 text-primary/70" />
                   <a
                     href="https://misideaspintadas.com.ar/"
-                    className="mr-2 flex items-center gap-5"
+                    className="mr-2 flex items-center"
                   >
                     <SquareArrowOutUpRight className="size-6 min-w-6" />
                   </a>
                 </div>
-                <div className="flex flex-col gap-2 p-4">
-                  <p className="text-nowrap text-2xl italic text-primary/70">
-                    Ecommerce - Full App Development
-                  </p>
-                  <div className="text-nowrap text-5xl font-semibold text-primary">
-                    Mis Ideas Pintadas
-                  </div>
-                  {/* <div className="glitch text-nowrap text-6xl font-semibold text-primary">
-                    {Array.from({ length: 11 }).map((_, i) => (
-                      <span key={i} className="line">
-                        Mis Ideas Pintadas
-                      </span>
-                    ))}
-                  </div> */}
+              </div>
+              <div className="flex flex-col gap-2 2xl:p-4">
+                <p className="hidden text-nowrap text-2xl italic text-primary/70 2xl:block">
+                  Ecommerce - Full App Development
+                </p>
+                <p className="flex flex-col text-xl italic text-primary/70 2xl:hidden 2xl:text-nowrap 2xl:text-2xl">
+                  <span>Ecommerce</span>
+                  Full App Development
+                </p>
+                <div className="text-4xl font-semibold text-primary 2xl:text-nowrap 2xl:text-5xl">
+                  Mis Ideas Pintadas
                 </div>
               </div>
-              <div className="group z-10 flex h-full w-3/5 gap-1.5">
-                {mip.map((image, i) => (
-                  <div
-                    key={i}
-                    className="relative h-full flex-[1] overflow-hidden rounded-xl shadow-lg transition-all duration-500 hover:flex-[1.5]"
-                  >
-                    <div className="absolute left-0 top-0 size-full rounded-xl bg-black/50 opacity-0 transition-all duration-500 hover:!opacity-0 group-hover:opacity-100 group-hover:backdrop-blur-[1px]" />
-                    <Image
-                      alt="LushForest"
-                      src={image}
-                      className="h-full w-full object-cover opacity-85 saturate-0 transition-all duration-500 hover:opacity-100 hover:saturate-100"
-                      width={400}
-                      height={300}
-                    />
-                  </div>
-                ))}
-              </div>
-
-              {animations && (
-                <>
-                  <video
-                    id="carousel"
-                    src={"./misideaspintadas/carouselLight.mp4"}
-                    autoPlay
-                    playsInline
-                    muted
-                    loop
-                    className={cn(
-                      theme === "dark" ? "opacity-0" : "opacity-30",
-                      "grad1 absolute left-0 top-0 z-0 h-full w-96 object-cover",
-                    )}
-                  />
-                  <video
-                    id="carousel"
-                    src={"./misideaspintadas/carouselDark.mp4"}
-                    autoPlay
-                    playsInline
-                    muted
-                    loop
-                    className={cn(
-                      theme === "dark" ? "opacity-20" : "opacity-0",
-                      "grad1 absolute left-0 top-0 z-0 h-full w-96 object-cover",
-                    )}
-                  />
-                </>
-              )}
             </div>
-          </Remarked>
-        </section>
+            <div className="group z-10 flex h-72 w-full gap-1.5 2xl:h-full 2xl:w-3/5">
+              {mip.map((image, i) => (
+                <div
+                  key={i}
+                  className="relative h-full flex-[1] overflow-hidden rounded-xl shadow-lg transition-all duration-500 hover:flex-[1.5]"
+                >
+                  <div className="absolute left-0 top-0 size-full rounded-xl bg-black/50 opacity-0 transition-all duration-500 hover:!opacity-0 group-hover:opacity-100 group-hover:backdrop-blur-[1px]" />
+                  <Image
+                    alt="LushForest"
+                    src={image}
+                    className="h-full w-full object-cover opacity-85 saturate-0 transition-all duration-500 hover:opacity-100 hover:saturate-100"
+                    width={400}
+                    height={300}
+                  />
+                </div>
+              ))}
+            </div>
 
-        <section className="flex h-80">
-          {/* SEAT CONTROL */}
-          <Remarked className="h-full w-full">
-            <div className="relative flex h-full w-full gap-8 overflow-hidden rounded-2xl bg-secondary/10 p-4 shadow-inner-lg">
-              <div className="z-10 flex h-full w-2/5 flex-col items-start justify-between gap-2">
-                <div className="flex items-center gap-3 pl-2">
-                  <div className="flex h-8 items-center justify-center gap-2 self-center rounded-full bg-secondary/15 pl-3 pr-4">
-                    <FolderOpen className="size-5 min-w-5" />
-                    <span className="text-lg uppercase">Project</span>
-                  </div>
-                  <DPSColorLogo className="size-14 fill-primary/70" />
+            {animations && (
+              <>
+                <video
+                  id="carousel"
+                  src={"./misideaspintadas/carouselLight.mp4"}
+                  autoPlay
+                  playsInline
+                  muted
+                  loop
+                  className={cn(
+                    theme === "dark" ? "opacity-0" : "opacity-30",
+                    "grad1 absolute left-0 top-0 z-0 h-full w-96 object-cover",
+                  )}
+                />
+                <video
+                  id="carousel"
+                  src={"./misideaspintadas/carouselDark.mp4"}
+                  autoPlay
+                  playsInline
+                  muted
+                  loop
+                  className={cn(
+                    theme === "dark" ? "opacity-20" : "opacity-0",
+                    "grad1 absolute left-0 top-0 z-0 h-full w-96 object-cover",
+                  )}
+                />
+              </>
+            )}
+          </div>
+        </Remarked>
+
+        {/* SEAT CONTROL */}
+        <Remarked className="h-fit w-full 2xl:h-80">
+          <div className="relative flex h-fit w-full flex-col gap-8 overflow-hidden rounded-2xl bg-secondary/10 p-4 shadow-inner-lg 2xl:h-full 2xl:flex-row">
+            <div className="z-20 flex h-full w-full flex-col items-start justify-between gap-2 2xl:w-2/5">
+              <div className="flex h-9 w-full items-center justify-between gap-3 2xl:justify-start 2xl:pl-2">
+                <div className="flex h-8 items-center justify-center gap-2 self-center rounded-full bg-secondary/15 pl-3 pr-4 shadow-md">
+                  <FolderOpen className="size-5 min-w-5" />
+                  <span className="text-lg uppercase">Project</span>
+                </div>
+                <div className="flex items-center gap-2 pr-1 2xl:gap-3 2xl:pr-0">
+                  <DPSColorLogo className="size-14 fill-primary/70 drop-shadow-lg" />
                   <a
                     href="https://www.stctrl.com.ar/"
-                    className="flex items-center gap-3"
+                    className="flex items-center"
                   >
                     <SquareArrowOutUpRight className="size-6 min-w-6" />
                   </a>
                 </div>
-                <div className="flex flex-col gap-2 p-4">
-                  <p className="text-nowrap text-2xl italic text-primary/70">
-                    Full Frontend Development
-                  </p>
-                  <div className="text-6xl text-primary">
-                    Seat<b>Control</b>
-                  </div>
-                  {/* <div className="glitch text-6xl text-primary/70">
-                    {Array.from({ length: 11 }).map((_, i) => (
-                      <span key={i} className="line">
-                        Seat<b>Control</b>
-                      </span>
-                    ))}
-                  </div> */}
+              </div>
+              <div className="flex flex-col gap-2 2xl:p-4">
+                <p className="text-nowrap text-xl italic text-primary/70 2xl:text-2xl">
+                  Full Frontend Development
+                </p>
+                <div className="text-5xl text-primary 2xl:text-6xl">
+                  Seat<b>Control</b>
                 </div>
               </div>
-              <div className="group z-10 flex h-full w-3/5 gap-1.5">
-                {sc.map((image, i) => (
-                  <div
-                    key={i}
-                    className="relative h-full flex-[1] overflow-hidden rounded-xl shadow-lg transition-all duration-500 hover:flex-[1.5]"
-                  >
-                    <div className="absolute left-0 top-0 size-full rounded-xl bg-black/50 opacity-0 transition-all duration-500 hover:!opacity-0 group-hover:opacity-100 group-hover:backdrop-blur-[1px]" />
-                    <Image
-                      alt="SC_Image"
-                      src={image}
-                      className="h-full w-full object-cover opacity-85 saturate-0 transition-all duration-500 hover:opacity-100 hover:saturate-100"
-                      height={400}
-                      width={300}
-                    />
-                  </div>
-                ))}
-              </div>
-
-              {animations && (
-                <Image
-                  alt="SCTrackng"
-                  src={SCTrackng}
-                  className="grad1 absolute left-0 top-0 z-0 h-full object-cover opacity-30"
-                />
-              )}
             </div>
-          </Remarked>
-        </section>
+            <div className="group z-10 flex h-72 w-full gap-1.5 2xl:h-full 2xl:w-3/5">
+              {sc.map((image, i) => (
+                <div
+                  key={i}
+                  className="relative h-full flex-[1] overflow-hidden rounded-xl shadow-lg transition-all duration-500 hover:flex-[1.5]"
+                >
+                  <div className="absolute left-0 top-0 size-full rounded-xl bg-black/50 opacity-0 transition-all duration-500 hover:!opacity-0 group-hover:opacity-100 group-hover:backdrop-blur-[1px]" />
+                  <Image
+                    alt="SC_Image"
+                    src={image}
+                    className="h-full w-full object-cover opacity-85 saturate-0 transition-all duration-500 hover:opacity-100 hover:saturate-100"
+                    height={400}
+                    width={300}
+                  />
+                </div>
+              ))}
+            </div>
 
-        <section className="flex h-80 gap-8">
+            {animations && (
+              <Image
+                alt="SCTrackng"
+                src={SCTrackng}
+                className="grad1 absolute left-0 top-0 z-0 h-full object-cover opacity-30"
+              />
+            )}
+          </div>
+        </Remarked>
+
+        <section className="flex h-fit flex-col gap-6 2xl:h-80 2xl:flex-row 2xl:gap-8">
           {/* DPS */}
-          <Remarked className="h-full w-full">
-            <div className="relative flex h-full w-full gap-8 overflow-hidden rounded-2xl bg-secondary/10 p-4 shadow-inner-lg">
-              <div className="flex h-full w-2/5 flex-col justify-between gap-2">
-                <div className="flex items-center gap-3 pl-2">
-                  <div className="flex h-8 items-center justify-center gap-2 self-center rounded-full bg-secondary/15 pl-3 pr-4">
+          <Remarked className="h-fit w-full 2xl:h-full">
+            <div className="relative flex h-fit w-full flex-col gap-6 overflow-hidden rounded-2xl bg-secondary/10 p-4 shadow-inner-lg 2xl:h-full 2xl:flex-row 2xl:gap-8">
+              <div className="z-10 flex h-fit w-full flex-col justify-between gap-2 2xl:h-full 2xl:w-2/5">
+                <div className="flex flex-row items-center justify-between gap-1 pl-2 2xl:flex-col 2xl:items-start 2xl:justify-center">
+                  <div className="flex h-8 items-center justify-center gap-2 rounded-full bg-secondary/15 pl-3 pr-4 shadow-md 2xl:self-start">
                     <FolderOpen className="size-5 min-w-5" />
                     <span className="text-lg uppercase">Project</span>
                   </div>
-                  <DPSColorLogo className="size-14 fill-primary/70" />
-                  <a
-                    href="https://www.dpssoftware.com.ar/"
-                    className="flex items-center gap-3"
-                  >
-                    <SquareArrowOutUpRight className="size-6 min-w-6" />
-                  </a>
+                  <div className="flex items-center gap-3 pr-1 2xl:pr-0">
+                    <DPSColorLogo className="size-14 fill-primary/70 drop-shadow-lg" />
+                    <a
+                      href="https://www.dpssoftware.com.ar/"
+                      className="flex items-center"
+                    >
+                      <SquareArrowOutUpRight className="size-6 min-w-6" />
+                    </a>
+                  </div>
                 </div>
-                <div className="flex flex-col gap-2 p-4">
+                <div className="flex flex-col gap-2 2xl:p-4">
                   <p className="text-nowrap text-2xl italic text-primary/70">
                     Landing Page
                   </p>
@@ -419,7 +519,7 @@ export default function Home() {
                   </div> */}
                 </div>
               </div>
-              <div className="group flex h-full w-3/5 gap-1.5">
+              <div className="group flex h-72 w-full gap-1.5 2xl:h-full 2xl:w-3/5">
                 {dpsImages.map((image, i) => (
                   <div
                     key={i}
@@ -440,36 +540,34 @@ export default function Home() {
           </Remarked>
 
           {/* SIGGA */}
-          <Remarked className="h-full w-full">
-            <div className="flex h-full w-full gap-8 rounded-2xl bg-secondary/10 p-4 shadow-inner-lg">
-              <div className="flex h-full w-2/5 flex-col justify-between gap-2">
-                <div className="flex items-center gap-3 pl-2">
-                  <div className="flex h-8 items-center justify-center gap-2 self-center rounded-full bg-secondary/15 pl-3 pr-4">
+          <Remarked className="h-fit w-full 2xl:h-full">
+            <div className="relative flex h-fit w-full flex-col gap-6 overflow-hidden rounded-2xl bg-secondary/10 p-4 shadow-inner-lg 2xl:h-full 2xl:flex-row 2xl:gap-8">
+              <div className="z-10 flex h-fit w-full flex-col justify-between gap-2 2xl:h-full 2xl:w-2/5">
+                <div className="flex flex-row items-center justify-between gap-1 pl-2 2xl:flex-col 2xl:items-start 2xl:justify-center">
+                  <div className="flex h-8 items-center justify-center gap-2 rounded-full bg-secondary/15 pl-3 pr-4 shadow-md 2xl:self-start">
                     <FolderOpen className="size-5 min-w-5" />
                     <span className="text-lg uppercase">Project</span>
                   </div>
-                  <DPSColorLogo className="size-14 fill-primary/70" />
-                  <a href="https://www.sigga.com.ar/">
-                    <SquareArrowOutUpRight className="size-6 min-w-6" />
-                  </a>
+                  <div className="flex items-center gap-3 pr-1 2xl:pr-0">
+                    <DPSColorLogo className="size-14 fill-primary/70 drop-shadow-lg" />
+                    <a
+                      href="https://www.dpssoftware.com.ar/"
+                      className="flex items-center"
+                    >
+                      <SquareArrowOutUpRight className="size-6 min-w-6" />
+                    </a>
+                  </div>
                 </div>
-                <div className="flex flex-col gap-2 p-4">
+                <div className="flex flex-col gap-2 2xl:p-4">
                   <p className="text-nowrap text-2xl italic text-primary/70">
                     Landing Page
                   </p>
                   <div className="glitch text-6xl font-semibold text-primary">
                     SIGGA
                   </div>
-                  {/* <div className="glitch self-end text-6xl font-semibold text-primary/70">
-                    {Array.from({ length: 11 }).map((_, i) => (
-                      <span key={i} className="line">
-                        SIGGA
-                      </span>
-                    ))}
-                  </div> */}
                 </div>
               </div>
-              <div className="group flex h-full w-3/5 gap-1.5">
+              <div className="group flex h-72 w-full gap-1.5 2xl:h-full 2xl:w-3/5">
                 {siggaImages.map((image, i) => (
                   <div
                     key={i}
@@ -492,34 +590,34 @@ export default function Home() {
       </div>
 
       {/* ASIDE */}
-      <div className="h-auto w-80 min-w-80 gap-8">
-        <div className="sticky top-16 flex h-[calc(100vh-128px)] w-full flex-col gap-8">
-          <Remarked className="h-full w-full">
+      <div className="hidden h-auto w-16 min-w-16 gap-8 2xl:block 2xl:w-80 2xl:min-w-80">
+        <div className="sticky top-6 flex h-[calc(100vh-128px)] w-full flex-col gap-6 2xl:top-16 2xl:gap-8">
+          <Remarked className="h-16 w-full 2xl:h-full">
             <div
               // onMouseOver={setHover}
               // onMouseLeave={clearState}
               onClick={switchTheme}
               className={cn(
                 isLoaded ? "opacity-100" : "opacity-0",
-                "group relative flex h-full w-full cursor-pointer items-center justify-center overflow-hidden rounded-2xl bg-secondary/10 shadow-inner-lg transition-all",
+                "group relative flex h-16 w-full cursor-pointer items-center justify-center overflow-hidden rounded-2xl bg-secondary/10 shadow-inner-lg transition-all 2xl:h-full",
               )}
             >
               <div
                 className={cn(
                   theme === "dark" && "rotate-180",
-                  "absolute left-1/2 top-full flex h-full w-10 -translate-x-1/2 -translate-y-1/2 transform flex-col justify-between rounded-lg text-primary/70 transition-transform duration-700",
+                  "absolute left-1/2 top-full flex h-full w-8 -translate-x-1/2 -translate-y-1/2 transform flex-col justify-between rounded-lg text-primary/70 transition-transform duration-700 2xl:w-10",
                 )}
               >
                 <Sun
                   className={cn(
                     theme === "light" && "rotate-180",
-                    "absolute -top-5 size-10 transition-transform duration-700",
+                    "absolute -top-5 size-8 transition-transform duration-700 2xl:size-10",
                   )}
                 />
                 <Moon
                   className={cn(
                     theme === "dark" && "-rotate-180",
-                    "absolute -bottom-5 size-10 transition-transform duration-700",
+                    "absolute -bottom-5 size-8 transition-transform duration-700 2xl:size-10",
                   )}
                 />
               </div>
@@ -532,7 +630,7 @@ export default function Home() {
             </div>
           </Remarked>
 
-          <Remarked className="size-full">
+          <Remarked className="h-16 w-full 2xl:h-full">
             <a
               // onMouseOver={setHover}
               // onMouseLeave={clearState}
@@ -540,10 +638,10 @@ export default function Home() {
               target="_blank"
               className={cn(
                 isLoaded ? "opacity-100" : "opacity-0",
-                "group flex h-full w-full items-center justify-center rounded-2xl bg-secondary/10 p-4 shadow-inner-lg transition-all delay-150",
+                "group flex h-16 w-full items-center justify-center rounded-2xl bg-secondary/10 p-4 shadow-inner-lg transition-all delay-150 2xl:h-full",
               )}
             >
-              <GitHubSVG className="size-10 fill-primary/70 transition-all group-hover:scale-110" />
+              <GitHubSVG className="size-8 fill-primary/70 transition-all group-hover:scale-110 2xl:size-10" />
               <div
                 className={cn(
                   isLoaded ? "opacity-100" : "opacity-0",
@@ -553,7 +651,7 @@ export default function Home() {
             </a>
           </Remarked>
 
-          <Remarked className="size-full">
+          <Remarked className="h-16 w-full 2xl:h-full">
             <a
               // onMouseOver={setHover}
               // onMouseLeave={clearState}
@@ -561,10 +659,10 @@ export default function Home() {
               target="_blank"
               className={cn(
                 isLoaded ? "opacity-100" : "opacity-0",
-                "group flex h-full w-full items-center justify-center rounded-2xl bg-secondary/10 p-4 shadow-inner-lg transition-all delay-300",
+                "group flex h-16 w-full items-center justify-center rounded-2xl bg-secondary/10 p-4 shadow-inner-lg transition-all delay-300 2xl:h-full",
               )}
             >
-              <LinkedinLogo className="size-9 fill-primary/70 transition-all group-hover:scale-110" />
+              <LinkedinLogo className="size-7 fill-primary/70 transition-all group-hover:scale-110 2xl:size-9" />
               <div
                 className={cn(
                   isLoaded ? "opacity-100" : "opacity-0",
@@ -574,7 +672,7 @@ export default function Home() {
             </a>
           </Remarked>
 
-          <Remarked className="size-full">
+          <Remarked className="h-16 w-full 2xl:h-full">
             <a
               // onMouseOver={setHover}
               // onMouseLeave={clearState}
@@ -582,10 +680,10 @@ export default function Home() {
               target="_blank"
               className={cn(
                 isLoaded ? "opacity-100" : "opacity-0",
-                "group flex h-full w-full items-center justify-center rounded-2xl bg-secondary/10 p-4 shadow-inner-lg transition-all delay-450",
+                "group flex h-16 w-full items-center justify-center rounded-2xl bg-secondary/10 p-4 shadow-inner-lg transition-all delay-450 2xl:h-full",
               )}
             >
-              <PlatziLogo className="size-10 fill-primary/70 transition-all group-hover:scale-110" />
+              <PlatziLogo className="size-8 fill-primary/70 transition-all group-hover:scale-110 2xl:size-10" />
               <div
                 className={cn(
                   isLoaded ? "opacity-100" : "opacity-0",

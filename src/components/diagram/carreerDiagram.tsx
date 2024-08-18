@@ -60,7 +60,7 @@ export const CareerDiagram = () => {
         />
 
         <Panel position="top-left">
-          <div className="flex h-8 items-center justify-center gap-2 self-center rounded-full bg-secondary/15 px-4 backdrop-blur-sm">
+          <div className="flex h-8 items-center justify-center gap-2 self-center rounded-full bg-secondary/15 px-4 shadow-md backdrop-blur-sm">
             <BriefcaseBusiness className="size-5 min-w-5" />
             <span className="text-lg uppercase">Professional Career</span>
           </div>
