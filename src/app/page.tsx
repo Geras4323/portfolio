@@ -127,15 +127,15 @@ export default function Home() {
       {/* CONTENT */}
       <div className="flex w-full flex-col gap-6 2xl:gap-8">
         <div className="flex w-full gap-6 2xl:gap-8">
-          <section className="flex w-full flex-col justify-between gap-6 2xl:w-1/2 2xl:gap-8">
+          <section className="flex w-full flex-col justify-between gap-6 xl:w-1/2 2xl:gap-8">
             {/* NAME */}
-            <Remarked className="h-fit min-h-80 w-full 2xl:h-80">
-              <div className="flex h-full w-full flex-col justify-between gap-6 rounded-2xl bg-secondary/10 p-4 shadow-inner-lg 2xl:gap-4 2xl:p-8">
+            <Remarked className="h-fit min-h-48 w-full md:min-h-52 lg:min-h-60 2xl:h-80 2xl:min-h-80">
+              <div className="flex h-full w-full flex-col justify-between gap-6 rounded-2xl bg-secondary/10 p-4 shadow-inner-lg xl:p-8 2xl:gap-4">
                 <div className="flex flex-col gap-4 text-primary/70">
-                  <p className="text-4xl font-semibold uppercase tracking-wide 2xl:text-5xl">
+                  <p className="text-4xl font-semibold uppercase tracking-wide md:text-5xl">
                     Germán Göhringer
                   </p>
-                  <p className="text-2xl uppercase tracking-wide 2xl:text-3xl">
+                  <p className="text-2xl uppercase tracking-wide md:text-3xl">
                     Frontend Developer
                   </p>
                 </div>
@@ -165,7 +165,7 @@ export default function Home() {
                 )}
 
                 {/* CV AND LIGHT/DARK - MOBILE */}
-                <div className="grid h-24 min-h-24 w-full grid-cols-3 gap-4 2xl:hidden">
+                <div className="grid h-24 min-h-24 w-full grid-cols-3 gap-4 sm:hidden">
                   <a
                     href="./CV - GERMAN GOHRINGER - FRONTEND DEVELOPER.pdf"
                     download
@@ -209,14 +209,14 @@ export default function Home() {
             </Remarked>
 
             {/* LINKS MOBILE */}
-            <Remarked className="h-fit min-h-16 w-full 2xl:hidden">
-              <div className="grid size-full grid-cols-3 gap-4 bg-secondary/5 px-4 py-2">
+            <Remarked className="h-fit min-h-16 w-full lg:hidden">
+              <div className="grid size-full grid-cols-3 gap-4 bg-secondary/5 px-4 py-2 sm:grid-cols-2 sm:py-4">
                 <a
                   href="https://github.com/Geras4323"
                   target="_blank"
                   className={cn(
                     isLoaded ? "opacity-100" : "opacity-0",
-                    "group flex size-full items-center justify-center rounded-xl bg-secondary/10 p-4 shadow-inner-lg transition-all delay-150 2xl:h-full",
+                    "group flex h-20 w-full items-center justify-center rounded-xl bg-secondary/10 p-4 shadow-inner-lg transition-all delay-150 2xl:h-full",
                   )}
                 >
                   <GitHubSVG className="size-8 fill-primary/70 transition-all group-hover:scale-110 2xl:size-10" />
@@ -228,12 +228,45 @@ export default function Home() {
                   />
                 </a>
 
+                <div
+                  onClick={switchTheme}
+                  className={cn(
+                    "group relative col-span-1 hidden h-20 w-full cursor-pointer items-center justify-center overflow-hidden rounded-xl bg-secondary/10 shadow-inner-lg transition-all sm:flex 2xl:h-full",
+                  )}
+                >
+                  <div
+                    className={cn(
+                      theme === "dark" && "rotate-180",
+                      "absolute left-1/2 top-full flex h-full w-8 -translate-x-1/2 -translate-y-1/2 transform flex-col justify-between rounded-lg text-primary/70 transition-transform duration-700 2xl:w-10",
+                    )}
+                  >
+                    <Sun
+                      className={cn(
+                        theme === "light" && "rotate-180",
+                        "absolute -top-5 size-8 transition-transform duration-700 2xl:size-10",
+                      )}
+                    />
+                    <Moon
+                      className={cn(
+                        theme === "dark" && "-rotate-180",
+                        "absolute -bottom-5 size-8 transition-transform duration-700 2xl:size-10",
+                      )}
+                    />
+                  </div>
+                  <div
+                    className={cn(
+                      isLoaded ? "opacity-100" : "opacity-0",
+                      "absolute z-0 size-20 rounded-full bg-gradient-radial from-white/50 via-transparent to-transparent blur-xl transition-all delay-750 group-hover:from-white/60 group-hover:via-transparent",
+                    )}
+                  />
+                </div>
+
                 <a
                   href="https://www.linkedin.com/in/german-gohringer/"
                   target="_blank"
                   className={cn(
                     isLoaded ? "opacity-100" : "opacity-0",
-                    "group flex size-full items-center justify-center rounded-xl bg-secondary/10 p-4 shadow-inner-lg transition-all delay-300 2xl:h-full",
+                    "group flex h-20 w-full items-center justify-center rounded-xl bg-secondary/10 p-4 shadow-inner-lg transition-all delay-300 2xl:h-full",
                   )}
                 >
                   <LinkedinLogo className="size-7 fill-primary/70 transition-all group-hover:scale-110 2xl:size-9" />
@@ -250,7 +283,7 @@ export default function Home() {
                   target="_blank"
                   className={cn(
                     isLoaded ? "opacity-100" : "opacity-0",
-                    "group flex size-full items-center justify-center rounded-xl bg-secondary/10 p-4 shadow-inner-lg transition-all delay-450 2xl:h-full",
+                    "group flex h-20 w-full items-center justify-center rounded-xl bg-secondary/10 p-4 shadow-inner-lg transition-all delay-450 2xl:h-full",
                   )}
                 >
                   <PlatziLogo className="size-8 fill-primary/70 transition-all group-hover:scale-110 2xl:size-10" />
@@ -267,18 +300,21 @@ export default function Home() {
 
             {/* CV & TOOLS */}
             <Remarked className="h-72 w-full 2xl:h-80 2xl:min-h-80">
-              <div className="h-full w-full rounded-2xl bg-secondary/10 p-4 shadow-inner-lg">
-                <div className="flex size-full gap-6 rounded-xl border border-secondary/20 p-4">
+              <div className="flex h-full w-full gap-4 rounded-2xl bg-secondary/10 p-4 shadow-inner-lg">
+                <div className="flex h-full w-full gap-6 rounded-xl border border-secondary/20 p-4 lg:w-3/5 xl:w-full">
+                  {/* CV */}
                   <a
                     href="./CV - GERMAN GOHRINGER - FRONTEND DEVELOPER.pdf"
                     download
-                    className="relative hidden h-full w-48 min-w-48 cursor-pointer items-center justify-center rounded-lg bg-secondary/10 shadow-md transition-all duration-300 hover:bg-secondary/15 2xl:flex"
+                    className="relative hidden h-full w-44 min-w-44 cursor-pointer items-center justify-center rounded-lg bg-secondary/10 shadow-md transition-all duration-300 hover:bg-secondary/15 sm:flex"
                   >
-                    <CV className="size-20 min-w-20 fill-primary/70" />
-                    <ArrowDown className="absolute bottom-20 right-14 size-6 min-w-6 -translate-x-1 -translate-y-1 animate-bounce" />
-                    <Minus className="absolute bottom-16 right-14 size-6 min-w-6 -translate-y-1.5" />
+                    <div className="relative">
+                      <CV className="size-20 min-w-20 fill-primary/70 2xl:size-20 2xl:min-w-20" />
+                      <ArrowDown className="absolute -bottom-1 right-0 size-6 min-w-6 animate-bounce" />
+                      <Minus className="absolute right-0 -my-2 size-6 min-w-6" />
+                    </div>
                   </a>
-
+                  {/* Tools */}
                   <div className="flex size-full flex-col gap-2">
                     <div className="flex h-8 items-center justify-center gap-2 self-center rounded-full bg-secondary/15 pl-3 pr-4 shadow-md">
                       <Wrench className="size-5 min-w-5 stroke-1" />
@@ -286,7 +322,7 @@ export default function Home() {
                     </div>
 
                     <div className="flex size-full flex-col justify-around 2xl:justify-evenly">
-                      <div className="flex items-center justify-center gap-6 2xl:gap-8">
+                      <div className="flex items-center justify-center gap-6 sm:gap-8 xl:gap-5 2xl:gap-6">
                         <TechItem Svg={React} content="ReactJS" />
                         <TechItem
                           Svg={NextJS}
@@ -296,7 +332,7 @@ export default function Home() {
                         <TechItem Svg={Typescript} content="TypeScript" />
                         <TechItem Svg={TailwindCSS} content="Tailwind CSS" />
                       </div>
-                      <div className="flex items-center justify-center gap-6 2xl:gap-8">
+                      <div className="flex items-center justify-center gap-6 sm:gap-8 xl:gap-5 2xl:gap-6">
                         <TechItem Svg={Go} content="Golang" />
                         <TechItem Svg={Docker} content="Docker" />
                         <TechItem Svg={MySQL} content="MySQL" />
@@ -307,7 +343,7 @@ export default function Home() {
                         />
                         <TechItem Svg={NodeJS} content="NodeJS" />
                       </div>
-                      <div className="flex items-center justify-center gap-6 2xl:gap-8">
+                      <div className="flex items-center justify-center gap-6 sm:gap-8 xl:gap-5 2xl:gap-6">
                         <TechItem
                           Svg={Websocket}
                           content="Websockets"
@@ -332,12 +368,100 @@ export default function Home() {
                     </div>
                   </div>
                 </div>
+
+                {/* LINKS TABLET */}
+                <div className="hidden h-full w-2/5 grid-cols-2 gap-4 lg:grid xl:hidden">
+                  <a
+                    href="https://github.com/Geras4323"
+                    target="_blank"
+                    className={cn(
+                      isLoaded ? "opacity-100" : "opacity-0",
+                      "group flex size-full items-center justify-center rounded-xl bg-secondary/10 p-4 shadow-inner-lg transition-all delay-150 2xl:h-full",
+                    )}
+                  >
+                    <GitHubSVG className="size-8 fill-primary/70 transition-all group-hover:scale-110 2xl:size-10" />
+                    <div
+                      className={cn(
+                        isLoaded ? "opacity-100" : "opacity-0",
+                        "absolute z-0 size-20 rounded-full bg-gradient-radial from-white/50 via-transparent to-transparent blur-xl transition-all delay-750 group-hover:from-white/60 group-hover:via-transparent",
+                      )}
+                    />
+                  </a>
+
+                  <div
+                    onClick={switchTheme}
+                    className={cn(
+                      "group relative col-span-1 flex size-full cursor-pointer items-center justify-center overflow-hidden rounded-xl bg-secondary/10 shadow-inner-lg transition-all 2xl:h-full",
+                    )}
+                  >
+                    <div
+                      className={cn(
+                        theme === "dark" && "rotate-180",
+                        "absolute left-1/2 top-full flex h-full w-8 -translate-x-1/2 -translate-y-1/2 transform flex-col justify-between rounded-lg text-primary/70 transition-transform duration-700 2xl:w-10",
+                      )}
+                    >
+                      <Sun
+                        className={cn(
+                          theme === "light" && "rotate-180",
+                          "absolute -top-5 size-8 transition-transform duration-700 2xl:size-10",
+                        )}
+                      />
+                      <Moon
+                        className={cn(
+                          theme === "dark" && "-rotate-180",
+                          "absolute -bottom-5 size-8 transition-transform duration-700 2xl:size-10",
+                        )}
+                      />
+                    </div>
+                    <div
+                      className={cn(
+                        isLoaded ? "opacity-100" : "opacity-0",
+                        "absolute z-0 size-20 rounded-full bg-gradient-radial from-white/50 via-transparent to-transparent blur-xl transition-all delay-750 group-hover:from-white/60 group-hover:via-transparent",
+                      )}
+                    />
+                  </div>
+
+                  <a
+                    href="https://www.linkedin.com/in/german-gohringer/"
+                    target="_blank"
+                    className={cn(
+                      isLoaded ? "opacity-100" : "opacity-0",
+                      "group flex size-full items-center justify-center rounded-xl bg-secondary/10 p-4 shadow-inner-lg transition-all delay-300 2xl:h-full",
+                    )}
+                  >
+                    <LinkedinLogo className="size-7 fill-primary/70 transition-all group-hover:scale-110 2xl:size-9" />
+                    <div
+                      className={cn(
+                        isLoaded ? "opacity-100" : "opacity-0",
+                        "absolute z-0 size-20 rounded-full bg-gradient-radial from-white/50 via-transparent to-transparent blur-xl transition-all delay-900 group-hover:from-white/60 group-hover:via-transparent",
+                      )}
+                    />
+                  </a>
+
+                  <a
+                    href="https://platzi.com/p/german432/"
+                    target="_blank"
+                    className={cn(
+                      isLoaded ? "opacity-100" : "opacity-0",
+                      "group flex size-full items-center justify-center rounded-xl bg-secondary/10 p-4 shadow-inner-lg transition-all delay-450 2xl:h-full",
+                    )}
+                  >
+                    <PlatziLogo className="size-8 fill-primary/70 transition-all group-hover:scale-110 2xl:size-10" />
+                    <div
+                      className={cn(
+                        isLoaded ? "opacity-100" : "opacity-0",
+                        // "delay-1050 absolute z-0 size-10 rounded-full bg-white/50 blur-md transition-all",
+                        "absolute z-0 size-20 rounded-full bg-gradient-radial from-white/50 via-transparent to-transparent blur-xl transition-all delay-1050 group-hover:from-white/60 group-hover:via-transparent",
+                      )}
+                    />
+                  </a>
+                </div>
               </div>
             </Remarked>
           </section>
 
           {/* DIAGRAM */}
-          <Remarked className="hidden h-full w-1/2 2xl:block">
+          <Remarked className="hidden h-full w-1/2 xl:block">
             <div className="size-full rounded-2xl bg-secondary/10 p-4 shadow-inner-lg">
               <div className="size-full rounded-xl border border-secondary/20">
                 <CareerDiagram />
@@ -348,10 +472,10 @@ export default function Home() {
 
         {/* MIS IDEAS PINTADAS */}
         <Remarked className="h-fit w-full 2xl:h-80">
-          <div className="relative flex h-fit w-full flex-col gap-8 overflow-hidden rounded-2xl bg-secondary/10 p-4 shadow-inner-lg 2xl:h-full 2xl:flex-row">
+          <div className="relative flex h-fit w-full flex-col gap-8 overflow-hidden rounded-2xl bg-secondary/10 p-4 shadow-inner-lg xl:h-full xl:flex-row 2xl:flex-row">
             <div className="z-20 flex h-full w-full flex-col justify-between gap-2 2xl:w-2/5">
-              <div className="flex items-center justify-between gap-3 pl-2 2xl:justify-start">
-                <div className="flex h-8 items-center justify-center gap-2 self-center rounded-full bg-secondary/15 pl-3 pr-4 shadow-md">
+              <div className="flex items-center justify-between gap-3 pl-2 xl:justify-start">
+                <div className="flex h-8 items-center justify-center gap-2 self-center rounded-full bg-secondary/15 pl-3 pr-4 shadow-md backdrop-blur-sm">
                   <FolderOpen className="size-5 min-w-5" />
                   <span className="text-lg uppercase">Project</span>
                 </div>
@@ -365,15 +489,15 @@ export default function Home() {
                   </a>
                 </div>
               </div>
-              <div className="flex flex-col gap-2 2xl:p-4">
-                <p className="hidden text-nowrap text-2xl italic text-primary/70 2xl:block">
+              <div className="flex flex-col gap-2 xl:p-4">
+                <p className="hidden text-nowrap text-2xl italic text-primary/70 xl:block">
                   Ecommerce - Full App Development
                 </p>
-                <p className="flex flex-col text-xl italic text-primary/70 2xl:hidden 2xl:text-nowrap 2xl:text-2xl">
+                <p className="flex flex-col text-xl italic text-primary/70 xl:hidden 2xl:text-nowrap 2xl:text-2xl">
                   <span>Ecommerce</span>
                   Full App Development
                 </p>
-                <div className="text-4xl font-semibold text-primary 2xl:text-nowrap 2xl:text-5xl">
+                <div className="text-4xl font-semibold text-primary xl:text-nowrap xl:text-5xl">
                   Mis Ideas Pintadas
                 </div>
               </div>
@@ -429,10 +553,10 @@ export default function Home() {
 
         {/* SEAT CONTROL */}
         <Remarked className="h-fit w-full 2xl:h-80">
-          <div className="relative flex h-fit w-full flex-col gap-8 overflow-hidden rounded-2xl bg-secondary/10 p-4 shadow-inner-lg 2xl:h-full 2xl:flex-row">
-            <div className="z-20 flex h-full w-full flex-col items-start justify-between gap-2 2xl:w-2/5">
-              <div className="flex h-9 w-full items-center justify-between gap-3 2xl:justify-start 2xl:pl-2">
-                <div className="flex h-8 items-center justify-center gap-2 self-center rounded-full bg-secondary/15 pl-3 pr-4 shadow-md">
+          <div className="relative flex h-fit w-full flex-col gap-8 overflow-hidden rounded-2xl bg-secondary/10 p-4 shadow-inner-lg xl:h-full xl:flex-row 2xl:flex-row">
+            <div className="z-20 flex h-full w-full flex-col justify-between gap-2 xl:w-2/5">
+              <div className="flex items-center justify-between gap-3 pl-2 xl:justify-start">
+                <div className="flex h-8 items-center justify-center gap-2 self-center rounded-full bg-secondary/15 pl-3 pr-4 shadow-md backdrop-blur-sm">
                   <FolderOpen className="size-5 min-w-5" />
                   <span className="text-lg uppercase">Project</span>
                 </div>
@@ -446,16 +570,16 @@ export default function Home() {
                   </a>
                 </div>
               </div>
-              <div className="flex flex-col gap-2 2xl:p-4">
-                <p className="text-nowrap text-xl italic text-primary/70 2xl:text-2xl">
+              <div className="flex flex-col gap-2 xl:p-4">
+                <p className="text-nowrap text-xl italic text-primary/70 xl:text-2xl">
                   Full Frontend Development
                 </p>
-                <div className="text-5xl text-primary 2xl:text-6xl">
+                <div className="text-5xl text-primary xl:text-6xl">
                   Seat<b>Control</b>
                 </div>
               </div>
             </div>
-            <div className="group z-10 flex h-72 w-full gap-1.5 2xl:h-full 2xl:w-3/5">
+            <div className="group z-10 flex h-72 w-full gap-1.5 xl:w-3/5 2xl:h-full">
               {sc.map((image, i) => (
                 <div
                   key={i}
@@ -483,13 +607,13 @@ export default function Home() {
           </div>
         </Remarked>
 
-        <section className="flex h-fit flex-col gap-6 2xl:h-80 2xl:flex-row 2xl:gap-8">
+        <section className="flex h-fit flex-col gap-6 lg:h-80 lg:flex-row 2xl:h-80 2xl:flex-row 2xl:gap-8">
           {/* DPS */}
-          <Remarked className="h-fit w-full 2xl:h-full">
-            <div className="relative flex h-fit w-full flex-col gap-6 overflow-hidden rounded-2xl bg-secondary/10 p-4 shadow-inner-lg 2xl:h-full 2xl:flex-row 2xl:gap-8">
-              <div className="z-10 flex h-fit w-full flex-col justify-between gap-2 2xl:h-full 2xl:w-2/5">
-                <div className="flex flex-row items-center justify-between gap-1 pl-2 2xl:flex-col 2xl:items-start 2xl:justify-center">
-                  <div className="flex h-8 items-center justify-center gap-2 rounded-full bg-secondary/15 pl-3 pr-4 shadow-md 2xl:self-start">
+          <Remarked className="h-fit w-full sm:h-full 2xl:h-full">
+            <div className="relative flex h-fit w-full flex-col gap-6 overflow-hidden rounded-2xl bg-secondary/10 p-4 shadow-inner-lg sm:h-full sm:flex-row 2xl:h-full 2xl:flex-row 2xl:gap-8">
+              <div className="z-10 flex h-fit w-full flex-col justify-between gap-2 sm:h-full sm:w-1/3 2xl:h-full 2xl:w-2/5">
+                <div className="flex flex-row items-center justify-between gap-1 pl-2 sm:flex-col sm:items-start 2xl:flex-col 2xl:items-start 2xl:justify-center">
+                  <div className="flex h-8 items-center justify-center gap-2 rounded-full bg-secondary/15 pl-3 pr-4 shadow-md backdrop-blur-sm 2xl:self-start">
                     <FolderOpen className="size-5 min-w-5" />
                     <span className="text-lg uppercase">Project</span>
                   </div>
@@ -503,23 +627,14 @@ export default function Home() {
                     </a>
                   </div>
                 </div>
-                <div className="flex flex-col gap-2 2xl:p-4">
+                <div className="flex flex-col gap-2 sm:p-2 2xl:p-4">
                   <p className="text-nowrap text-2xl italic text-primary/70">
                     Landing Page
                   </p>
-                  <div className="glitch text-6xl font-semibold text-primary">
-                    DPS
-                  </div>
-                  {/* <div className="glitch self-end text-6xl font-semibold text-primary">
-                    {Array.from({ length: 11 }).map((_, i) => (
-                      <span key={i} className="line">
-                        DPS
-                      </span>
-                    ))}
-                  </div> */}
+                  <div className="text-6xl font-semibold text-primary">DPS</div>
                 </div>
               </div>
-              <div className="group flex h-72 w-full gap-1.5 2xl:h-full 2xl:w-3/5">
+              <div className="group flex h-72 w-full gap-1.5 sm:w-2/3 2xl:h-full 2xl:w-3/5">
                 {dpsImages.map((image, i) => (
                   <div
                     key={i}
@@ -540,10 +655,10 @@ export default function Home() {
           </Remarked>
 
           {/* SIGGA */}
-          <Remarked className="h-fit w-full 2xl:h-full">
-            <div className="relative flex h-fit w-full flex-col gap-6 overflow-hidden rounded-2xl bg-secondary/10 p-4 shadow-inner-lg 2xl:h-full 2xl:flex-row 2xl:gap-8">
-              <div className="z-10 flex h-fit w-full flex-col justify-between gap-2 2xl:h-full 2xl:w-2/5">
-                <div className="flex flex-row items-center justify-between gap-1 pl-2 2xl:flex-col 2xl:items-start 2xl:justify-center">
+          <Remarked className="h-fit w-full sm:h-full 2xl:h-full">
+            <div className="relative flex h-fit w-full flex-col gap-6 overflow-hidden rounded-2xl bg-secondary/10 p-4 shadow-inner-lg sm:h-full sm:flex-row 2xl:h-full 2xl:flex-row 2xl:gap-8">
+              <div className="z-10 flex h-fit w-full flex-col justify-between gap-2 sm:h-full sm:w-1/3 2xl:h-full 2xl:w-2/5">
+                <div className="flex flex-row items-center justify-between gap-1 pl-2 sm:flex-col sm:items-start 2xl:flex-col 2xl:items-start 2xl:justify-center">
                   <div className="flex h-8 items-center justify-center gap-2 rounded-full bg-secondary/15 pl-3 pr-4 shadow-md 2xl:self-start">
                     <FolderOpen className="size-5 min-w-5" />
                     <span className="text-lg uppercase">Project</span>
@@ -558,16 +673,16 @@ export default function Home() {
                     </a>
                   </div>
                 </div>
-                <div className="flex flex-col gap-2 2xl:p-4">
+                <div className="flex flex-col gap-2 sm:p-2 2xl:p-4">
                   <p className="text-nowrap text-2xl italic text-primary/70">
                     Landing Page
                   </p>
-                  <div className="glitch text-6xl font-semibold text-primary">
+                  <div className="text-6xl font-semibold text-primary">
                     SIGGA
                   </div>
                 </div>
               </div>
-              <div className="group flex h-72 w-full gap-1.5 2xl:h-full 2xl:w-3/5">
+              <div className="group flex h-72 w-full gap-1.5 sm:w-2/3 2xl:h-full 2xl:w-3/5">
                 {siggaImages.map((image, i) => (
                   <div
                     key={i}
@@ -590,16 +705,14 @@ export default function Home() {
       </div>
 
       {/* ASIDE */}
-      <div className="hidden h-auto w-16 min-w-16 gap-8 2xl:block 2xl:w-80 2xl:min-w-80">
-        <div className="sticky top-6 flex h-[calc(100vh-128px)] w-full flex-col gap-6 2xl:top-16 2xl:gap-8">
-          <Remarked className="h-16 w-full 2xl:h-full">
+      <div className="hidden h-auto gap-8 xl:block xl:w-36 xl:min-w-36 2xl:w-80 2xl:min-w-80">
+        <div className="sticky top-6 flex w-full flex-col gap-6 xl:h-[calc(100vh-48px)] 2xl:top-16 2xl:h-[calc(100vh-128px)] 2xl:gap-8">
+          <Remarked className="h-full w-full 2xl:h-full">
             <div
-              // onMouseOver={setHover}
-              // onMouseLeave={clearState}
               onClick={switchTheme}
               className={cn(
                 isLoaded ? "opacity-100" : "opacity-0",
-                "group relative flex h-16 w-full cursor-pointer items-center justify-center overflow-hidden rounded-2xl bg-secondary/10 shadow-inner-lg transition-all 2xl:h-full",
+                "group relative flex h-full w-full cursor-pointer items-center justify-center overflow-hidden rounded-2xl bg-secondary/10 shadow-inner-lg transition-all 2xl:h-full",
               )}
             >
               <div
@@ -630,7 +743,7 @@ export default function Home() {
             </div>
           </Remarked>
 
-          <Remarked className="h-16 w-full 2xl:h-full">
+          <Remarked className="h-full w-full 2xl:h-full">
             <a
               // onMouseOver={setHover}
               // onMouseLeave={clearState}
@@ -638,7 +751,7 @@ export default function Home() {
               target="_blank"
               className={cn(
                 isLoaded ? "opacity-100" : "opacity-0",
-                "group flex h-16 w-full items-center justify-center rounded-2xl bg-secondary/10 p-4 shadow-inner-lg transition-all delay-150 2xl:h-full",
+                "group flex h-full w-full items-center justify-center rounded-2xl bg-secondary/10 p-4 shadow-inner-lg transition-all delay-150 2xl:h-full",
               )}
             >
               <GitHubSVG className="size-8 fill-primary/70 transition-all group-hover:scale-110 2xl:size-10" />
@@ -651,7 +764,7 @@ export default function Home() {
             </a>
           </Remarked>
 
-          <Remarked className="h-16 w-full 2xl:h-full">
+          <Remarked className="h-full w-full 2xl:h-full">
             <a
               // onMouseOver={setHover}
               // onMouseLeave={clearState}
@@ -659,7 +772,7 @@ export default function Home() {
               target="_blank"
               className={cn(
                 isLoaded ? "opacity-100" : "opacity-0",
-                "group flex h-16 w-full items-center justify-center rounded-2xl bg-secondary/10 p-4 shadow-inner-lg transition-all delay-300 2xl:h-full",
+                "group flex h-full w-full items-center justify-center rounded-2xl bg-secondary/10 p-4 shadow-inner-lg transition-all delay-300 2xl:h-full",
               )}
             >
               <LinkedinLogo className="size-7 fill-primary/70 transition-all group-hover:scale-110 2xl:size-9" />
@@ -672,7 +785,7 @@ export default function Home() {
             </a>
           </Remarked>
 
-          <Remarked className="h-16 w-full 2xl:h-full">
+          <Remarked className="h-full w-full 2xl:h-full">
             <a
               // onMouseOver={setHover}
               // onMouseLeave={clearState}
@@ -680,7 +793,7 @@ export default function Home() {
               target="_blank"
               className={cn(
                 isLoaded ? "opacity-100" : "opacity-0",
-                "group flex h-16 w-full items-center justify-center rounded-2xl bg-secondary/10 p-4 shadow-inner-lg transition-all delay-450 2xl:h-full",
+                "group flex h-full w-full items-center justify-center rounded-2xl bg-secondary/10 p-4 shadow-inner-lg transition-all delay-450 2xl:h-full",
               )}
             >
               <PlatziLogo className="size-8 fill-primary/70 transition-all group-hover:scale-110 2xl:size-10" />
