@@ -129,8 +129,8 @@ export default function Home() {
         <div className="flex w-full gap-6 2xl:gap-8">
           <section className="flex w-full flex-col justify-between gap-6 xl:w-1/2 2xl:gap-8">
             {/* NAME */}
-            <Remarked className="h-fit min-h-48 w-full md:min-h-52 lg:min-h-60 2xl:h-80 2xl:min-h-80">
-              <div className="flex h-full w-full flex-col justify-between gap-6 rounded-2xl bg-secondary/10 p-4 shadow-inner-lg xl:p-8 2xl:gap-4">
+            <Remarked className="h-fit min-h-48 w-full md:min-h-52 lg:min-h-60 xl:h-1/2 2xl:h-80 2xl:min-h-80">
+              <div className="flex h-full w-full flex-col justify-between gap-6 rounded-2xl bg-secondary/10 p-4 shadow-inner-lg xl:p-4 2xl:gap-4 2xl:p-8">
                 <div className="flex flex-col gap-4 text-primary/70">
                   <p className="text-4xl font-semibold uppercase tracking-wide md:text-5xl">
                     Germán Göhringer
@@ -154,7 +154,7 @@ export default function Home() {
                             "Born to be better",
                             4000,
                           ]}
-                          className="inline-block text-2xl uppercase tracking-wide lg:text-4xl"
+                          className="inline-block text-2xl uppercase tracking-wide md:text-3xl lg:text-4xl xl:text-3xl 2xl:text-4xl"
                           wrapper="span"
                           repeat={Infinity}
                           cursor={false}
@@ -306,7 +306,7 @@ export default function Home() {
                   <a
                     href="./CV - GERMAN GOHRINGER - FRONTEND DEVELOPER.pdf"
                     download
-                    className="relative hidden h-full w-44 min-w-44 cursor-pointer items-center justify-center rounded-lg bg-secondary/10 shadow-md transition-all duration-300 hover:bg-secondary/15 sm:flex"
+                    className="relative hidden h-full w-44 min-w-44 cursor-pointer items-center justify-center rounded-lg bg-secondary/10 shadow-md transition-all duration-300 hover:bg-secondary/15 sm:flex 2xl:w-full 2xl:min-w-fit 2xl:max-w-44"
                   >
                     <div className="relative">
                       <CV className="size-20 min-w-20 fill-primary/70 2xl:size-20 2xl:min-w-20" />
