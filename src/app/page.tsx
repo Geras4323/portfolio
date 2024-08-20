@@ -4,9 +4,7 @@ import {
   ArrowDown,
   FolderOpen,
   Minus,
-  Moon,
   SquareArrowOutUpRight,
-  Sun,
   UserRound,
   Wrench,
 } from "lucide-react";
@@ -56,6 +54,8 @@ import { Docker } from "public/techs/docker";
 import { NodeJS } from "public/techs/nodejs";
 import { TechItem } from "@/components/techItem";
 import { mqs, useMediaQueries } from "@/hooks/screen";
+import { LinkBlock } from "@/components/linkBlock";
+import { ThemeSwitcher } from "@/components/themeSwitcher";
 
 const misideaspintadasImages: {
   dark: StaticImageData[];
@@ -69,7 +69,7 @@ const siggaImages: StaticImageData[] = [SiggaTop, SiggaFooter];
 const dpsImages: StaticImageData[] = [DPSBrands, DPSProducts];
 
 export default function Home() {
-  const { theme, switchTheme } = useThemeSwitcher();
+  const { theme } = useThemeSwitcher();
   const mq = useMediaQueries();
 
   const [isLoading, setIsLoading] = useState(true);
@@ -164,7 +164,7 @@ export default function Home() {
                   </div>
                 )}
 
-                {/* CV AND LIGHT/DARK - MOBILE */}
+                {/* CV AND THEME - MOBILE */}
                 <div className="grid h-24 min-h-24 w-full grid-cols-3 gap-4 sm:hidden">
                   <a
                     href="./CV - GERMAN GOHRINGER - FRONTEND DEVELOPER.pdf"
@@ -178,32 +178,10 @@ export default function Home() {
                     </div>
                   </a>
 
-                  <div
-                    onClick={switchTheme}
-                    className={cn(
-                      "group relative col-span-1 flex size-full cursor-pointer items-center justify-center overflow-hidden rounded-xl bg-secondary/10 shadow-md transition-all 2xl:h-full",
-                    )}
-                  >
-                    <div
-                      className={cn(
-                        theme === "dark" && "rotate-180",
-                        "absolute left-1/2 top-full flex h-full w-8 -translate-x-1/2 -translate-y-1/2 transform flex-col justify-between rounded-lg text-primary/70 transition-transform duration-700 2xl:w-10",
-                      )}
-                    >
-                      <Sun
-                        className={cn(
-                          theme === "light" && "rotate-180",
-                          "absolute -top-5 size-8 transition-transform duration-700 2xl:size-10",
-                        )}
-                      />
-                      <Moon
-                        className={cn(
-                          theme === "dark" && "-rotate-180",
-                          "absolute -bottom-5 size-8 transition-transform duration-700 2xl:size-10",
-                        )}
-                      />
-                    </div>
-                  </div>
+                  <ThemeSwitcher
+                    isLoaded
+                    blockCN="w-full 2xl:h-full shadow-md"
+                  />
                 </div>
               </div>
             </Remarked>
@@ -211,90 +189,36 @@ export default function Home() {
             {/* LINKS MOBILE */}
             <Remarked className="h-fit min-h-16 w-full lg:hidden">
               <div className="grid size-full grid-cols-3 gap-4 bg-secondary/5 px-4 py-2 sm:grid-cols-2 sm:py-4">
-                <a
-                  href="https://github.com/Geras4323"
-                  target="_blank"
-                  className={cn(
-                    isLoaded ? "opacity-100" : "opacity-0",
-                    "group flex h-20 w-full items-center justify-center rounded-xl bg-secondary/10 p-4 shadow-inner-lg transition-all delay-150 2xl:h-full",
-                  )}
-                >
-                  <GitHubSVG className="size-8 fill-primary/70 transition-all group-hover:scale-110 2xl:size-10" />
-                  <div
-                    className={cn(
-                      isLoaded ? "opacity-100" : "opacity-0",
-                      "absolute z-0 size-20 rounded-full bg-gradient-radial from-white/50 via-transparent to-transparent blur-xl transition-all delay-750 group-hover:from-white/60 group-hover:via-transparent",
-                    )}
-                  />
-                </a>
+                <LinkBlock
+                  url="https://github.com/Geras4323"
+                  SVG={GitHubSVG}
+                  isLoaded={isLoaded}
+                  blockCN="h-20"
+                  lightCN="delay-600"
+                />
 
-                <div
-                  onClick={switchTheme}
-                  className={cn(
-                    "group relative col-span-1 hidden h-20 w-full cursor-pointer items-center justify-center overflow-hidden rounded-xl bg-secondary/10 shadow-inner-lg transition-all sm:flex 2xl:h-full",
-                  )}
-                >
-                  <div
-                    className={cn(
-                      theme === "dark" && "rotate-180",
-                      "absolute left-1/2 top-full flex h-full w-8 -translate-x-1/2 -translate-y-1/2 transform flex-col justify-between rounded-lg text-primary/70 transition-transform duration-700 2xl:w-10",
-                    )}
-                  >
-                    <Sun
-                      className={cn(
-                        theme === "light" && "rotate-180",
-                        "absolute -top-5 size-8 transition-transform duration-700 2xl:size-10",
-                      )}
-                    />
-                    <Moon
-                      className={cn(
-                        theme === "dark" && "-rotate-180",
-                        "absolute -bottom-5 size-8 transition-transform duration-700 2xl:size-10",
-                      )}
-                    />
-                  </div>
-                  <div
-                    className={cn(
-                      isLoaded ? "opacity-100" : "opacity-0",
-                      "absolute z-0 size-20 rounded-full bg-gradient-radial from-white/50 via-transparent to-transparent blur-xl transition-all delay-750 group-hover:from-white/60 group-hover:via-transparent",
-                    )}
-                  />
-                </div>
+                <ThemeSwitcher
+                  blockCN="hidden delay-150 h-20 w-full sm:flex 2xl:h-full shadow-inner-lg"
+                  lightCN="size-20 delay-750"
+                  showLight
+                  isLoaded={isLoaded}
+                />
 
-                <a
-                  href="https://www.linkedin.com/in/german-gohringer/"
-                  target="_blank"
-                  className={cn(
-                    isLoaded ? "opacity-100" : "opacity-0",
-                    "group flex h-20 w-full items-center justify-center rounded-xl bg-secondary/10 p-4 shadow-inner-lg transition-all delay-300 2xl:h-full",
-                  )}
-                >
-                  <LinkedinLogo className="size-7 fill-primary/70 transition-all group-hover:scale-110 2xl:size-9" />
-                  <div
-                    className={cn(
-                      isLoaded ? "opacity-100" : "opacity-0",
-                      "absolute z-0 size-20 rounded-full bg-gradient-radial from-white/50 via-transparent to-transparent blur-xl transition-all delay-900 group-hover:from-white/60 group-hover:via-transparent",
-                    )}
-                  />
-                </a>
+                <LinkBlock
+                  url="https://www.linkedin.com/in/german-gohringer/"
+                  SVG={LinkedinLogo}
+                  isLoaded={isLoaded}
+                  blockCN="delay-300 h-20"
+                  lightCN="delay-900"
+                />
 
-                <a
-                  href="https://platzi.com/p/german432/"
-                  target="_blank"
-                  className={cn(
-                    isLoaded ? "opacity-100" : "opacity-0",
-                    "group flex h-20 w-full items-center justify-center rounded-xl bg-secondary/10 p-4 shadow-inner-lg transition-all delay-450 2xl:h-full",
-                  )}
-                >
-                  <PlatziLogo className="size-8 fill-primary/70 transition-all group-hover:scale-110 2xl:size-10" />
-                  <div
-                    className={cn(
-                      isLoaded ? "opacity-100" : "opacity-0",
-                      // "delay-1050 absolute z-0 size-10 rounded-full bg-white/50 blur-md transition-all",
-                      "absolute z-0 size-20 rounded-full bg-gradient-radial from-white/50 via-transparent to-transparent blur-xl transition-all delay-1050 group-hover:from-white/60 group-hover:via-transparent",
-                    )}
-                  />
-                </a>
+                <LinkBlock
+                  url="https://platzi.com/p/german432/"
+                  SVG={PlatziLogo}
+                  isLoaded={isLoaded}
+                  blockCN="delay-450 h-20"
+                  lightCN="delay-1050"
+                />
               </div>
             </Remarked>
 
@@ -371,90 +295,36 @@ export default function Home() {
 
                 {/* LINKS TABLET */}
                 <div className="hidden h-full w-2/5 grid-cols-2 gap-4 lg:grid xl:hidden">
-                  <a
-                    href="https://github.com/Geras4323"
-                    target="_blank"
-                    className={cn(
-                      isLoaded ? "opacity-100" : "opacity-0",
-                      "group flex size-full items-center justify-center rounded-xl bg-secondary/10 p-4 shadow-inner-lg transition-all delay-150 2xl:h-full",
-                    )}
-                  >
-                    <GitHubSVG className="size-8 fill-primary/70 transition-all group-hover:scale-110 2xl:size-10" />
-                    <div
-                      className={cn(
-                        isLoaded ? "opacity-100" : "opacity-0",
-                        "absolute z-0 size-20 rounded-full bg-gradient-radial from-white/50 via-transparent to-transparent blur-xl transition-all delay-750 group-hover:from-white/60 group-hover:via-transparent",
-                      )}
-                    />
-                  </a>
+                  <LinkBlock
+                    url="https://github.com/Geras4323"
+                    SVG={GitHubSVG}
+                    isLoaded={isLoaded}
+                    blockCN="h-full"
+                    lightCN="delay-600"
+                  />
 
-                  <div
-                    onClick={switchTheme}
-                    className={cn(
-                      "group relative col-span-1 flex size-full cursor-pointer items-center justify-center overflow-hidden rounded-xl bg-secondary/10 shadow-inner-lg transition-all 2xl:h-full",
-                    )}
-                  >
-                    <div
-                      className={cn(
-                        theme === "dark" && "rotate-180",
-                        "absolute left-1/2 top-full flex h-full w-8 -translate-x-1/2 -translate-y-1/2 transform flex-col justify-between rounded-lg text-primary/70 transition-transform duration-700 2xl:w-10",
-                      )}
-                    >
-                      <Sun
-                        className={cn(
-                          theme === "light" && "rotate-180",
-                          "absolute -top-5 size-8 transition-transform duration-700 2xl:size-10",
-                        )}
-                      />
-                      <Moon
-                        className={cn(
-                          theme === "dark" && "-rotate-180",
-                          "absolute -bottom-5 size-8 transition-transform duration-700 2xl:size-10",
-                        )}
-                      />
-                    </div>
-                    <div
-                      className={cn(
-                        isLoaded ? "opacity-100" : "opacity-0",
-                        "absolute z-0 size-20 rounded-full bg-gradient-radial from-white/50 via-transparent to-transparent blur-xl transition-all delay-750 group-hover:from-white/60 group-hover:via-transparent",
-                      )}
-                    />
-                  </div>
+                  <ThemeSwitcher
+                    blockCN="h-full delay-150 shadow-inner-lg"
+                    lightCN="delay-750"
+                    showLight
+                    isLoaded={isLoaded}
+                  />
 
-                  <a
-                    href="https://www.linkedin.com/in/german-gohringer/"
-                    target="_blank"
-                    className={cn(
-                      isLoaded ? "opacity-100" : "opacity-0",
-                      "group flex size-full items-center justify-center rounded-xl bg-secondary/10 p-4 shadow-inner-lg transition-all delay-300 2xl:h-full",
-                    )}
-                  >
-                    <LinkedinLogo className="size-7 fill-primary/70 transition-all group-hover:scale-110 2xl:size-9" />
-                    <div
-                      className={cn(
-                        isLoaded ? "opacity-100" : "opacity-0",
-                        "absolute z-0 size-20 rounded-full bg-gradient-radial from-white/50 via-transparent to-transparent blur-xl transition-all delay-900 group-hover:from-white/60 group-hover:via-transparent",
-                      )}
-                    />
-                  </a>
+                  <LinkBlock
+                    url="https://www.linkedin.com/in/german-gohringer/"
+                    SVG={LinkedinLogo}
+                    isLoaded={isLoaded}
+                    blockCN="delay-300 h-full"
+                    lightCN="delay-900"
+                  />
 
-                  <a
-                    href="https://platzi.com/p/german432/"
-                    target="_blank"
-                    className={cn(
-                      isLoaded ? "opacity-100" : "opacity-0",
-                      "group flex size-full items-center justify-center rounded-xl bg-secondary/10 p-4 shadow-inner-lg transition-all delay-450 2xl:h-full",
-                    )}
-                  >
-                    <PlatziLogo className="size-8 fill-primary/70 transition-all group-hover:scale-110 2xl:size-10" />
-                    <div
-                      className={cn(
-                        isLoaded ? "opacity-100" : "opacity-0",
-                        // "delay-1050 absolute z-0 size-10 rounded-full bg-white/50 blur-md transition-all",
-                        "absolute z-0 size-20 rounded-full bg-gradient-radial from-white/50 via-transparent to-transparent blur-xl transition-all delay-1050 group-hover:from-white/60 group-hover:via-transparent",
-                      )}
-                    />
-                  </a>
+                  <LinkBlock
+                    url="https://platzi.com/p/german432/"
+                    SVG={PlatziLogo}
+                    isLoaded={isLoaded}
+                    blockCN="delay-450 h-full"
+                    lightCN="delay-1050"
+                  />
                 </div>
               </div>
             </Remarked>
@@ -708,103 +578,42 @@ export default function Home() {
       <div className="hidden h-auto gap-8 xl:block xl:w-36 xl:min-w-36 2xl:w-80 2xl:min-w-80">
         <div className="sticky top-6 flex w-full flex-col gap-6 xl:h-[calc(100vh-48px)] 2xl:top-16 2xl:h-[calc(100vh-128px)] 2xl:gap-8">
           <Remarked className="h-full w-full 2xl:h-full">
-            <div
-              onClick={switchTheme}
-              className={cn(
-                isLoaded ? "opacity-100" : "opacity-0",
-                "group relative flex h-full w-full cursor-pointer items-center justify-center overflow-hidden rounded-2xl bg-secondary/10 shadow-inner-lg transition-all 2xl:h-full",
-              )}
-            >
-              <div
-                className={cn(
-                  theme === "dark" && "rotate-180",
-                  "absolute left-1/2 top-full flex h-full w-8 -translate-x-1/2 -translate-y-1/2 transform flex-col justify-between rounded-lg text-primary/70 transition-transform duration-700 2xl:w-10",
-                )}
-              >
-                <Sun
-                  className={cn(
-                    theme === "light" && "rotate-180",
-                    "absolute -top-5 size-8 transition-transform duration-700 2xl:size-10",
-                  )}
-                />
-                <Moon
-                  className={cn(
-                    theme === "dark" && "-rotate-180",
-                    "absolute -bottom-5 size-8 transition-transform duration-700 2xl:size-10",
-                  )}
-                />
-              </div>
-              <div
-                className={cn(
-                  isLoaded ? "opacity-100" : "opacity-0",
-                  "absolute z-0 size-24 rounded-full bg-gradient-radial from-white/50 via-transparent to-transparent blur-xl transition-all delay-600 group-hover:from-white/60 group-hover:via-transparent",
-                )}
-              />
-            </div>
+            <ThemeSwitcher
+              blockCN="h-full shadow-inner-lg"
+              lightCN="size-24 delay-600"
+              showLight
+              isLoaded={isLoaded}
+            />
           </Remarked>
 
           <Remarked className="h-full w-full 2xl:h-full">
-            <a
-              // onMouseOver={setHover}
-              // onMouseLeave={clearState}
-              href="https://github.com/Geras4323"
-              target="_blank"
-              className={cn(
-                isLoaded ? "opacity-100" : "opacity-0",
-                "group flex h-full w-full items-center justify-center rounded-2xl bg-secondary/10 p-4 shadow-inner-lg transition-all delay-150 2xl:h-full",
-              )}
-            >
-              <GitHubSVG className="size-8 fill-primary/70 transition-all group-hover:scale-110 2xl:size-10" />
-              <div
-                className={cn(
-                  isLoaded ? "opacity-100" : "opacity-0",
-                  "absolute z-0 size-24 rounded-full bg-gradient-radial from-white/50 via-transparent to-transparent blur-xl transition-all delay-750 group-hover:from-white/60 group-hover:via-transparent",
-                )}
-              />
-            </a>
+            <LinkBlock
+              url="https://github.com/Geras4323"
+              SVG={GitHubSVG}
+              isLoaded={isLoaded}
+              blockCN="delay-150 h-full"
+              lightCN="delay-750"
+            />
           </Remarked>
 
           <Remarked className="h-full w-full 2xl:h-full">
-            <a
-              // onMouseOver={setHover}
-              // onMouseLeave={clearState}
-              href="https://www.linkedin.com/in/german-gohringer/"
-              target="_blank"
-              className={cn(
-                isLoaded ? "opacity-100" : "opacity-0",
-                "group flex h-full w-full items-center justify-center rounded-2xl bg-secondary/10 p-4 shadow-inner-lg transition-all delay-300 2xl:h-full",
-              )}
-            >
-              <LinkedinLogo className="size-7 fill-primary/70 transition-all group-hover:scale-110 2xl:size-9" />
-              <div
-                className={cn(
-                  isLoaded ? "opacity-100" : "opacity-0",
-                  "absolute z-0 size-24 rounded-full bg-gradient-radial from-white/50 via-transparent to-transparent blur-xl transition-all delay-900 group-hover:from-white/60 group-hover:via-transparent",
-                )}
-              />
-            </a>
+            <LinkBlock
+              url="https://www.linkedin.com/in/german-gohringer/"
+              SVG={LinkedinLogo}
+              isLoaded={isLoaded}
+              blockCN="delay-300 h-full"
+              lightCN="delay-900"
+            />
           </Remarked>
 
           <Remarked className="h-full w-full 2xl:h-full">
-            <a
-              // onMouseOver={setHover}
-              // onMouseLeave={clearState}
-              href="https://platzi.com/p/german432/"
-              target="_blank"
-              className={cn(
-                isLoaded ? "opacity-100" : "opacity-0",
-                "group flex h-full w-full items-center justify-center rounded-2xl bg-secondary/10 p-4 shadow-inner-lg transition-all delay-450 2xl:h-full",
-              )}
-            >
-              <PlatziLogo className="size-8 fill-primary/70 transition-all group-hover:scale-110 2xl:size-10" />
-              <div
-                className={cn(
-                  isLoaded ? "opacity-100" : "opacity-0",
-                  // "delay-1050 absolute z-0 size-10 rounded-full bg-white/50 blur-md transition-all",
-                  "absolute z-0 size-24 rounded-full bg-gradient-radial from-white/50 via-transparent to-transparent blur-xl transition-all delay-1050 group-hover:from-white/60 group-hover:via-transparent",
-                )}
-              />
-            </a>
+            <LinkBlock
+              url="https://platzi.com/p/german432/"
+              SVG={PlatziLogo}
+              isLoaded={isLoaded}
+              blockCN="delay-450 h-full"
+              lightCN="delay-1050"
+            />
           </Remarked>
         </div>
       </div>
