@@ -1,5 +1,5 @@
 import { cn } from "@/utils/lib";
-import type { Point2D, WithChildren, WithClassName } from "@/utils/types";
+import type { WithChildren, WithClassName } from "@/utils/types";
 import {
   type RefObject,
   useCallback,
@@ -108,7 +108,7 @@ export const RandomTranslation = ({
       ref={elementRef}
       className={cn(
         !!className && className,
-        "absolute transition-all ease-linear duration-1000"
+        "absolute transition-all duration-1000 ease-linear",
       )}
       style={{
         transform: `translate(${position.x ?? 0}px, ${position.y ?? 0}px)`,

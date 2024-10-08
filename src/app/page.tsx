@@ -77,8 +77,8 @@ export default function Home() {
   const [animations] = useState(true);
 
   const seatcontrolImages: {
-    dark: StaticImageData[];
-    light: StaticImageData[];
+    dark: (StaticImageData | null)[];
+    light: (StaticImageData | null)[];
   } = {
     dark: [
       SCTrackingDark,
@@ -456,13 +456,15 @@ export default function Home() {
                   className="relative h-full flex-[1] overflow-hidden rounded-xl shadow-lg transition-all duration-500 hover:flex-[1.5]"
                 >
                   <div className="absolute left-0 top-0 size-full rounded-xl bg-black/50 opacity-0 transition-all duration-500 hover:!opacity-0 group-hover:opacity-100 group-hover:backdrop-blur-[1px]" />
-                  <Image
-                    alt="SC_Image"
-                    src={image}
-                    className="h-full w-full object-cover opacity-85 saturate-0 transition-all duration-500 hover:opacity-100 hover:saturate-100"
-                    height={400}
-                    width={300}
-                  />
+                  {image && (
+                    <Image
+                      alt="SC_Image"
+                      src={image}
+                      className="h-full w-full object-cover opacity-85 saturate-0 transition-all duration-500 hover:opacity-100 hover:saturate-100"
+                      height={400}
+                      width={300}
+                    />
+                  )}
                 </div>
               ))}
             </div>
