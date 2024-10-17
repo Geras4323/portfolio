@@ -19,20 +19,20 @@ export const MouseTracker = ({
     });
   };
 
-  const hideTracker = () => {
+  const toggleTracker = () => {
     setHidden((prev) => !prev);
   };
 
   useEffect(() => {
     if (elementRef.current) {
       window.addEventListener("mousemove", updateMousePosition);
-      document.addEventListener("blur", hideTracker);
-      document.addEventListener("focus", hideTracker);
+      document.addEventListener("blur", toggleTracker);
+      document.addEventListener("focus", toggleTracker);
     }
     return () => {
       window.removeEventListener("mousemove", updateMousePosition);
-      document.removeEventListener("blur", hideTracker);
-      document.removeEventListener("focus", hideTracker);
+      document.removeEventListener("blur", toggleTracker);
+      document.removeEventListener("focus", toggleTracker);
     };
   }, []);
 
