@@ -72,7 +72,6 @@ export default function Home() {
   const { theme } = useThemeSwitcher();
   const mq = useMediaQueries();
 
-  const [isLoading, setIsLoading] = useState(true);
   const [isLoaded, setIsLoaded] = useState(false);
   const [animations] = useState(true);
 
@@ -90,7 +89,6 @@ export default function Home() {
   };
 
   useEffect(() => {
-    setIsLoading(false);
     const timeout = setTimeout(() => {
       setIsLoaded(true);
     }, 100);
@@ -104,8 +102,6 @@ export default function Home() {
 
   const sc =
     theme === "dark" ? seatcontrolImages.dark : seatcontrolImages.light;
-
-  if (isLoading) return;
 
   return (
     <div
