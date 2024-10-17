@@ -6,7 +6,7 @@
   --glitch-color: black;
 }
 
-[data-theme='dark'] {
+[data-theme="dark"] {
   --glitch-color: white;
 }
 
@@ -61,21 +61,11 @@
 
 @keyframes clip {
   0% {
-    clip-path: polygon(
-      0 100%,
-      100% 100%,
-      100% 120%,
-      0 120%
-    );
+    clip-path: polygon(0 100%, 100% 100%, 100% 120%, 0 120%);
   }
 
   100% {
-    clip-path: polygon(
-      0 -20%,
-      100% -20%,
-      100% 0%,
-      0 0
-    );
+    clip-path: polygon(0 -20%, 100% -20%, 100% 0%, 0 0);
   }
 }
 
@@ -90,7 +80,7 @@
 }
 
 .gradient-border-bg.border-dps {
-  border-image: linear-gradient(90deg, #39f2ae, #2D5FFF) 1;
+  border-image: linear-gradient(90deg, #39f2ae, #2d5fff) 1;
 }
 
 .gradient-border-bg.border-freelance {

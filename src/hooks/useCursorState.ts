@@ -13,36 +13,37 @@ export const useCursorState = () => {
     hScroll: false,
   });
 
-  function setHover() {
+  const setHover = () => {
     setCursorState({
       hover: true,
       vScroll: false,
       hScroll: false,
     });
-  }
+  };
 
-  function setVScroll() {
+  const setVScroll = () => {
     setCursorState({
       hover: false,
       vScroll: true,
       hScroll: false,
     });
-  }
+  };
 
-  function setHScroll() {
+  const setHScroll = () => {
     setCursorState({
       hover: false,
       vScroll: false,
       hScroll: true,
     });
-  }
+  };
 
-  function clearState() {
+  const clearState = () => {
     setCursorState({
       hover: false,
       vScroll: false,
       hScroll: false,
     });
-  }
+  };
+
   return { cursorState, setHover, setVScroll, setHScroll, clearState };
 };

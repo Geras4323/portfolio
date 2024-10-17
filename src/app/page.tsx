@@ -76,20 +76,17 @@ export default function Home() {
   const [isLoaded, setIsLoaded] = useState(false);
   const [animations] = useState(true);
 
-  const seatcontrolImages: {
-    dark: (StaticImageData | null)[];
-    light: (StaticImageData | null)[];
-  } = {
+  const seatcontrolImages = {
     dark: [
       SCTrackingDark,
       mq >= mqs.sm ? SCSupportDark : null,
       SCAuditDark,
-    ].filter((image) => image !== null),
+    ].filter((image) => image !== null) as StaticImageData[],
     light: [
       SCTrackingLight,
       mq >= mqs.sm ? SCSupportLight : null,
       SCAuditLight,
-    ].filter((image) => image !== null),
+    ].filter((image) => image !== null) as StaticImageData[],
   };
 
   useEffect(() => {

@@ -19,7 +19,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={montserrat.className}>
-        <ThemeProvider>
+        <ThemeProvider enableSystem defaultTheme="light">
           <main>{children}</main>
         </ThemeProvider>
         <Analytics />
