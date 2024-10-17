@@ -12,7 +12,7 @@ export const Separator = ({
     <div
       className={cn(
         theme === "dark" ? "bg-[#1c1c1caa]" : "bg-[#f3f3f3aa]",
-        !!className && className
+        !!className && className,
       )}
     >
       {children}

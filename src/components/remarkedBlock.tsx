@@ -6,15 +6,15 @@ export const Remarked = ({
 }: WithChildren & WithClassName) => {
   return (
     <div className={className}>
-      <div className="size-full relative flex justify-center items-center">
+      <div className="relative flex size-full items-center justify-center">
         {/* Top */}
-        <div className="w-[calc(100%+250px)] z-0 h-px top-0 absolute bg-gradient-to-r from-transparent via-secondary/50 to-transparent" />
+        <div className="absolute top-0 z-0 h-px w-[calc(100%+250px)] bg-gradient-to-r from-transparent via-secondary/50 to-transparent" />
         {/* Bottom */}
-        <div className="w-[calc(100%+250px)] z-0 h-px bottom-0 absolute bg-gradient-to-r from-transparent via-secondary/50 to-transparent" />
+        <div className="absolute bottom-0 z-0 h-px w-[calc(100%+250px)] bg-gradient-to-r from-transparent via-secondary/50 to-transparent" />
         {/* Left */}
-        <div className="h-[calc(100%+250px)] w-px left-0 absolute bg-gradient-to-b from-transparent via-secondary/50 to-transparent" />
+        <div className="absolute left-0 h-[calc(100%+250px)] w-px bg-gradient-to-b from-transparent via-secondary/50 to-transparent" />
         {/* Right */}
-        <div className="h-[calc(100%+250px)] w-px right-0 absolute bg-gradient-to-b from-transparent via-secondary/50 to-transparent" />
+        <div className="absolute right-0 h-[calc(100%+250px)] w-px bg-gradient-to-b from-transparent via-secondary/50 to-transparent" />
 
         {children}
       </div>

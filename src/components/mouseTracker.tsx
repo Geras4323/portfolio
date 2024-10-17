@@ -39,7 +39,7 @@ export const MouseTracker = ({
   return (
     <div
       ref={elementRef}
-      className={cn(hidden && "hidden", "z-50 fixed pointer-events-none")}
+      className={cn(hidden && "hidden", "pointer-events-none fixed z-50")}
       style={{
         left: `${position.x}px`,
         top: `${position.y}px`,
@@ -49,8 +49,8 @@ export const MouseTracker = ({
         className={cn(
           !!state.hover && "size-7",
           !!state.hScroll && "h-2.5 w-10",
-          !!state.vScroll && "w-2.5 h-10",
-          "size-5 transition-all relative grid place-content-center bg-[#595959]/80 fill-current rounded-full"
+          !!state.vScroll && "h-10 w-2.5",
+          "relative grid size-5 place-content-center rounded-full bg-[#595959]/80 fill-current transition-all",
         )}
       >
         {/* HOVER */}
@@ -80,7 +80,7 @@ export const MouseTracker = ({
               : "opacity-0",
             !!state.hScroll && "animate-sideways",
             !!state.vScroll && "animate-upways",
-            "absolute top-0 left-0 size-2.5 rounded-full bg-white transition-opacity"
+            "absolute left-0 top-0 size-2.5 rounded-full bg-white transition-opacity",
           )}
         />
       </div>
