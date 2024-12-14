@@ -1,19 +1,18 @@
-import type { SVGProps } from "react";
 import { cn } from "@/utils/lib";
+import type { WithChildren } from "@/utils/types";
 
 export const LinkBlock = ({
+  children,
   url,
   isLoaded,
-  SVG,
   blockCN,
   lightCN,
 }: {
   url: string;
   isLoaded: boolean;
-  SVG: (props: SVGProps<SVGSVGElement>) => JSX.Element;
   blockCN?: string;
   lightCN?: string;
-}) => {
+} & WithChildren) => {
   return (
     <a
       href={url}
@@ -24,7 +23,7 @@ export const LinkBlock = ({
         !!blockCN && blockCN,
       )}
     >
-      <SVG className="size-8 fill-primary/70 transition-all group-hover:scale-110 2xl:size-10" />
+      {children}
       <div
         className={cn(
           isLoaded ? "opacity-100" : "opacity-0",

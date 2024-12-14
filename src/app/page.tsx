@@ -3,6 +3,7 @@ import { cn } from "@/utils/lib";
 import {
   ArrowDown,
   FolderOpen,
+  Mail,
   Minus,
   SquareArrowOutUpRight,
   UserRound,
@@ -13,7 +14,6 @@ import { GitHubSVG } from "../../public/github/logo";
 import { useThemeSwitcher } from "@/hooks/useThemeSwitcher";
 import { useEffect, useState } from "react";
 import Image, { type StaticImageData } from "next/image";
-import { PlatziLogo } from "public/platzi/logo";
 import { LinkedinLogo } from "public/linkedin/logo";
 import { DPSColorLogo } from "public/dps/color_logo";
 import { TypeAnimation } from "react-type-animation";
@@ -182,14 +182,6 @@ export default function Home() {
             {/* LINKS MOBILE */}
             <Remarked className="h-fit min-h-16 w-full lg:hidden">
               <div className="grid size-full grid-cols-3 gap-4 bg-secondary/5 px-4 py-2 sm:grid-cols-2 sm:py-4">
-                <LinkBlock
-                  url="https://github.com/Geras4323"
-                  SVG={GitHubSVG}
-                  isLoaded={isLoaded}
-                  blockCN="h-20"
-                  lightCN="delay-600"
-                />
-
                 <ThemeSwitcher
                   blockCN="hidden delay-150 h-20 w-full sm:flex 2xl:h-full shadow-inner-lg"
                   lightCN="size-20 delay-750"
@@ -198,20 +190,31 @@ export default function Home() {
                 />
 
                 <LinkBlock
-                  url="https://www.linkedin.com/in/german-gohringer/"
-                  SVG={LinkedinLogo}
-                  isLoaded={isLoaded}
-                  blockCN="delay-300 h-20"
-                  lightCN="delay-900"
-                />
-
-                <LinkBlock
-                  url="https://platzi.com/p/german432/"
-                  SVG={PlatziLogo}
+                  url="mailto:ggohringer432@gmail.com"
                   isLoaded={isLoaded}
                   blockCN="delay-450 h-20"
                   lightCN="delay-1050"
-                />
+                >
+                  <Mail className="size-8 text-primary/70 transition-all group-hover:scale-110 2xl:size-11" />
+                </LinkBlock>
+
+                <LinkBlock
+                  url="https://github.com/Geras4323"
+                  isLoaded={isLoaded}
+                  blockCN="h-20"
+                  lightCN="delay-600"
+                >
+                  <GitHubSVG className="size-8 fill-primary/70 transition-all group-hover:scale-110 2xl:size-10" />
+                </LinkBlock>
+
+                <LinkBlock
+                  url="https://www.linkedin.com/in/german-gohringer/"
+                  isLoaded={isLoaded}
+                  blockCN="delay-300 h-20"
+                  lightCN="delay-900"
+                >
+                  <LinkedinLogo className="size-8 fill-primary/70 transition-all group-hover:scale-110 2xl:size-10" />
+                </LinkBlock>
               </div>
             </Remarked>
 
@@ -290,11 +293,21 @@ export default function Home() {
                 <div className="hidden h-full w-2/5 grid-cols-2 gap-4 lg:grid xl:hidden">
                   <LinkBlock
                     url="https://github.com/Geras4323"
-                    SVG={GitHubSVG}
                     isLoaded={isLoaded}
                     blockCN="h-full"
                     lightCN="delay-600"
-                  />
+                  >
+                    <GitHubSVG className="size-8 fill-primary/70 transition-all group-hover:scale-110 2xl:size-10" />
+                  </LinkBlock>
+
+                  <LinkBlock
+                    url="mailto:ggohringer432@gmail.com"
+                    isLoaded={isLoaded}
+                    blockCN="delay-450 h-full"
+                    lightCN="delay-1050"
+                  >
+                    <Mail className="size-8 text-primary/70 transition-all group-hover:scale-110 2xl:size-11" />
+                  </LinkBlock>
 
                   <ThemeSwitcher
                     blockCN="h-full delay-150 shadow-inner-lg"
@@ -305,19 +318,12 @@ export default function Home() {
 
                   <LinkBlock
                     url="https://www.linkedin.com/in/german-gohringer/"
-                    SVG={LinkedinLogo}
                     isLoaded={isLoaded}
                     blockCN="delay-300 h-full"
                     lightCN="delay-900"
-                  />
-
-                  <LinkBlock
-                    url="https://platzi.com/p/german432/"
-                    SVG={PlatziLogo}
-                    isLoaded={isLoaded}
-                    blockCN="delay-450 h-full"
-                    lightCN="delay-1050"
-                  />
+                  >
+                    <LinkedinLogo className="size-8 fill-primary/70 transition-all group-hover:scale-110 2xl:size-10" />
+                  </LinkBlock>
                 </div>
               </div>
             </Remarked>
@@ -583,32 +589,35 @@ export default function Home() {
 
           <Remarked className="h-full w-full 2xl:h-full">
             <LinkBlock
+              url="mailto:ggohringer432@gmail.com"
+              isLoaded={isLoaded}
+              blockCN="delay-450 h-full"
+              lightCN="delay-1050"
+            >
+              <Mail className="size-8 text-primary/70 transition-all group-hover:scale-110 2xl:size-11" />
+            </LinkBlock>
+          </Remarked>
+
+          <Remarked className="h-full w-full 2xl:h-full">
+            <LinkBlock
               url="https://github.com/Geras4323"
-              SVG={GitHubSVG}
               isLoaded={isLoaded}
               blockCN="delay-150 h-full"
               lightCN="delay-750"
-            />
+            >
+              <GitHubSVG className="size-8 fill-primary/70 transition-all group-hover:scale-110 2xl:size-10" />
+            </LinkBlock>
           </Remarked>
 
           <Remarked className="h-full w-full 2xl:h-full">
             <LinkBlock
               url="https://www.linkedin.com/in/german-gohringer/"
-              SVG={LinkedinLogo}
               isLoaded={isLoaded}
               blockCN="delay-300 h-full"
               lightCN="delay-900"
-            />
-          </Remarked>
-
-          <Remarked className="h-full w-full 2xl:h-full">
-            <LinkBlock
-              url="https://platzi.com/p/german432/"
-              SVG={PlatziLogo}
-              isLoaded={isLoaded}
-              blockCN="delay-450 h-full"
-              lightCN="delay-1050"
-            />
+            >
+              <LinkedinLogo className="size-8 fill-primary/70 transition-all group-hover:scale-110 2xl:size-10" />
+            </LinkBlock>
           </Remarked>
         </div>
       </div>
