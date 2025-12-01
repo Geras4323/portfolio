@@ -7,8 +7,8 @@ import { Analytics } from "@vercel/analytics/react";
 const montserrat = Montserrat({ subsets: ["latin"], weight: "400" });
 
 export const metadata: Metadata = {
-  title: "German Gohringer",
-  description: "Professional portfolio",
+  title: "Germán Göhringer",
+  description: "Professional Portfolio",
 };
 
 export default function RootLayout({
